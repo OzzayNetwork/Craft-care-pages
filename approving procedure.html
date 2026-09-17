@@ -1,0 +1,445 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HMS - Patient Kardex - Mark Done Dialysis</title>
+<!-- Tailwind CSS v3 with forms & container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              navy: '#0f172a',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style data-purpose="custom-scrollbars">
+    /* Custom refined scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen relative select-none antialiased">
+<!-- BEGIN: BackgroundApplication -->
+<div class="filter backdrop-blur-[1px] brightness-[0.92] pointer-events-none min-h-screen flex flex-col bg-[#f4f6fa]" data-purpose="background-app-container">
+<!-- BEGIN: TopNavigationBar -->
+<header class="h-14 bg-white border-b border-slate-200 px-6 flex items-center justify-between shadow-sm">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-base shadow-sm">
+          +
+        </div>
+<span class="font-bold text-slate-800 tracking-wide text-lg">HMS</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-1.5 text-slate-400 hover:text-slate-600 rounded-full">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="relative">
+<button class="p-1.5 text-slate-400 hover:text-slate-600 rounded-full relative">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/4 bg-red-500 rounded-full">6</span>
+</button>
+</div>
+<div class="flex items-center space-x-2 pl-3 border-l border-slate-200 text-sm">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-semibold flex items-center justify-center text-xs">
+            HM
+          </div>
+<span class="font-medium text-slate-700 text-sm">Humphrey Muriungi</span>
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- END: TopNavigationBar -->
+<!-- BEGIN: PatientRecordHeader -->
+<div class="px-8 pt-4 pb-3">
+<div class="flex items-center text-blue-600 text-xs font-medium cursor-pointer mb-3">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+        Back to Patient Record
+      </div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="w-14 h-14 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xl tracking-tight">
+            bH
+          </div>
+<div>
+<h1 class="text-2xl font-bold text-slate-800">baby halima H</h1>
+<div class="flex items-center space-x-3 text-xs text-slate-500 mt-1">
+<span class="">IP No: <strong class="text-slate-700">ADM0101202609000</strong></span>
+<span class="">•</span>
+<span class="">Age / Gender: <strong class="text-slate-700">0 Y · female</strong></span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<button class="px-3.5 py-1.5 text-xs font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded-md">
+            ↗ Transfer
+          </button>
+<button class="px-3.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-md">
+            📄 Discharge Summary
+          </button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-white border border-slate-200 rounded-md">
+            🛡 Set code status
+          </button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-white border border-slate-200 rounded-md">
+            ⚑ Flag isolation
+          </button>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex space-x-2 mt-4">
+<span class="px-4 py-1.5 text-xs font-medium text-slate-600 bg-white rounded-md border border-slate-200">♥ Triage</span>
+<span class="px-4 py-1.5 text-xs font-medium text-blue-700 bg-blue-50 rounded-md border border-blue-200">📋 Kardex</span>
+<span class="px-4 py-1.5 text-xs font-medium text-slate-600 bg-white rounded-md border border-slate-200">Notes ⓘ</span>
+<span class="px-4 py-1.5 text-xs font-medium text-slate-600 bg-white rounded-md border border-slate-200">🗂 Documents</span>
+<span class="px-4 py-1.5 text-xs font-medium text-slate-600 bg-white rounded-md border border-slate-200">↺ History</span>
+</div>
+</div>
+<!-- END: PatientRecordHeader -->
+<!-- BEGIN: MainDashboardGrid -->
+<main class="flex-1 px-8 pb-10 grid grid-cols-12 gap-6">
+<!-- Left Kardex Orders Overview -->
+<section class="col-span-8 space-y-4">
+<div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-slate-100">
+<div>
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-700">KARDEX (ORDERS OVERVIEW)</h2>
+<p class="text-xs text-slate-400 mt-0.5">Doctor's orders in one action list — nurses see what to do and log the action against each row.</p>
+</div>
+<div class="flex items-center space-x-2">
+<div class="text-xs text-slate-600 bg-slate-50 border border-slate-200 rounded-md px-3 py-1.5 flex items-center">
+<span class="">All Active Orders</span>
+<svg class="w-3.5 h-3.5 ml-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<button class="bg-[#0e3b64] text-white text-xs font-medium px-3 py-1.5 rounded-md flex items-center">
+                + Add Order
+              </button>
+</div>
+</div>
+<!-- Summary Metric Counters -->
+<div class="grid grid-cols-4 gap-4 py-3 text-xs border-b border-slate-100">
+<div><span class="font-bold text-slate-800">0</span> <span class="text-slate-500">⏰ Due Now</span></div>
+<div><span class="font-bold text-slate-800">0</span> <span class="text-slate-500">🕒 Upcoming</span></div>
+<div><span class="font-bold text-slate-800">0</span> <span class="text-slate-500">✓ Completed (Today)</span></div>
+<div><span class="font-bold text-red-600">1</span> <span class="text-red-500">⚠ Overdue</span></div>
+</div>
+<!-- Order Card Item -->
+<div class="mt-4 p-4 border border-slate-200 rounded-xl bg-slate-50 flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="text-center bg-white px-3 py-2 rounded-lg border border-slate-200">
+<span class="block text-xs font-bold text-slate-700">13:23</span>
+<span class="text-[10px] text-amber-700 font-semibold bg-amber-100 px-1.5 py-0.5 rounded">Pending</span>
+</div>
+<div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-sm">
+                💊
+              </div>
+<div>
+<h3 class="text-sm font-semibold text-slate-800">dialysis - dose #1</h3>
+<p class="text-xs text-slate-500">Procedure</p>
+<p class="text-[11px] text-slate-400 mt-0.5">Ordered by: Humphrey Muriungi</p>
+</div>
+</div>
+<div class="text-right flex items-center space-x-4">
+<div class="text-xs text-right">
+<p class="text-slate-400">Scheduled</p>
+<p class="font-medium text-slate-700">2026-09-17 13:23</p>
+</div>
+<div class="space-y-1">
+<button class="block w-24 py-1 text-xs font-semibold bg-white border border-slate-300 rounded text-slate-700">
+                  ✓ Done
+                </button>
+<button class="block w-24 py-1 text-xs text-slate-500 hover:text-slate-700">
+                  Not done
+                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Summary Panel -->
+<aside class="col-span-4 space-y-4">
+<!-- Patient Summary Card -->
+<div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-xs">
+<h2 class="font-bold text-slate-800 mb-3 flex items-center">
+            👤 Patient Summary
+          </h2>
+<div class="space-y-2 divide-y divide-slate-100 text-slate-600">
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Age / Gender</span><span class="font-medium text-slate-800">0 Y · female</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Phone</span><span class="">—</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Next of Kin</span><span class="">—</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Payer</span><span class="">—</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Admission Type</span><span class="font-medium text-slate-800">elective</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Ward / Bed</span><span class="font-medium text-slate-800">newborn Unit / NEW-001</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Length of Stay</span><span class="font-medium text-slate-800">2 days admitted</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Admission Status</span><span class="font-medium text-slate-800">active</span></div>
+</div>
+</div>
+<!-- Clinical Snapshot Card -->
+<div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-xs">
+<h2 class="font-bold text-slate-800 mb-3 flex items-center">
+            ♥ Clinical Snapshot (Latest)
+          </h2>
+<div class="space-y-2 divide-y divide-slate-100 text-slate-600">
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">BP</span><span class="font-medium text-slate-800">0/0 mmHg</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Pulse</span><span class="font-medium text-slate-800">156 bpm</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Resp. Rate</span><span class="font-medium text-slate-800">70 /min</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Temperature</span><span class="font-medium text-slate-800">38.0 °C</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">SpO₂</span><span class="font-medium text-slate-800">95.00 %</span></div>
+<div class="flex justify-between pt-1.5"><span class="text-slate-400">Pain Score</span><span class="font-medium text-slate-800">8 / 10</span></div>
+</div>
+</div>
+</aside>
+</main>
+</div>
+<!-- END: BackgroundApplication -->
+<!-- BEGIN: ModalOverlay -->
+<div class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-[2px] flex items-center justify-center p-4 overflow-y-auto" data-purpose="modal-backdrop">
+<!-- BEGIN: MarkDoneModalDialog -->
+<div aria-labelledby="modal-title" aria-modal="true" class="bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200/90 overflow-hidden transform transition-all animate-in fade-in zoom-in duration-150 overflow-y-auto" data-purpose="dialog-card" role="dialog">
+<!-- Modal Header -->
+<div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<span class="w-5 h-5 rounded-full border border-slate-700 flex items-center justify-center text-slate-800 text-xs">
+<svg class="w-3 h-3 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+<h2 class="text-sm font-semibold text-slate-900" id="modal-title">
+            Mark done · dialysis
+          </h2>
+</div>
+<button aria-label="Close modal" class="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-1 rounded-md transition-colors text-base font-normal leading-none" type="button">
+          ✕
+        </button>
+</div>
+<!-- Modal Body Form -->
+<form class="p-6 space-y-4" id="mark-done-form">
+<!-- Date & Time Row -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Date Field -->
+<div data-purpose="input-group-date">
+<label class="block text-xs font-semibold text-slate-500 mb-1" for="record-date">
+              Date <span class="text-slate-400">*</span>
+</label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full text-xs font-normal text-slate-800 bg-white border border-slate-300 rounded-lg px-3 py-2 pr-9 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 tracking-wide" id="record-date" name="record-date" type="text" value="17/09/2026">
+<div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Time Field -->
+<div data-purpose="input-group-time">
+<label class="block text-xs font-semibold text-slate-500 mb-1" for="record-time">
+              Time <span class="text-slate-400">*</span>
+</label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full text-xs font-normal text-slate-800 bg-white border border-slate-300 rounded-lg px-3 py-2 pr-9 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 tracking-wide" id="record-time" name="record-time" type="text" value="13:24">
+<div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Notes (optional) -->
+<div data-purpose="input-group-notes">
+<label class="block text-xs font-semibold text-slate-500 mb-1" for="record-notes">Clinical Notes (optional)</label>
+<textarea class="block w-full text-xs text-slate-700 placeholder-slate-400 bg-white border border-slate-300 rounded-lg p-2.5 resize-y focus:ring-1 focus:ring-blue-500 focus:border-blue-500 leading-relaxed" id="record-notes" name="notes" placeholder="e.g. Vitals stable, no adverse reaction" rows="3"></textarea>
+</div>
+<!-- Approved By Segmented Control Section -->
+<div class="pt-1 space-y-3" data-purpose="personnel-section">
+  <div class="flex items-center justify-between mb-1">
+    <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+      <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+      </svg>
+      Personnel Involved
+    </label>
+  </div>
+  <div class="p-3.5 rounded-xl bg-slate-50/90 border border-slate-200/90 space-y-3"><div><div class="flex items-center justify-between mb-1"><label class="block text-[11px] font-semibold text-slate-600" for="performed-by">Performed By <span class="text-rose-500">*</span></label></div><div class="flex items-center gap-2"><div class="flex-1"><input class="block w-full text-xs text-slate-800 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-blue-500 focus:border-blue-500" id="performed-by" name="performed_by" placeholder="Staff Name" type="text" value="Humphrey Muriungi"></div><div class="w-36"><div class="relative"><select class="block w-full text-xs text-slate-800 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 pr-7 appearance-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" name="performed_by_role"><option selected="" value="Primary Nurse">Primary Nurse</option><option value="Assisting Nurse">Assisting Nurse</option><option value="Technician">Technician</option><option value="Medical Officer">Medical Officer</option><option value="Clinical Officer">Clinical Officer</option><option value="Surgeon">Surgeon</option><option value="Anesthetist">Anesthetist</option><option value="Other">Other</option></select><div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-slate-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div></div></div></div></div><div class="pt-1 space-y-2"><div class="flex items-center justify-between"><label class="block text-[11px] font-semibold text-slate-600">Additional Staff Involved <span class="text-[10px] text-slate-400 font-normal">(Optional)</span></label></div><div class="flex items-center gap-2"><div class="flex-1"><input class="block w-full text-xs text-slate-800 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-blue-500 focus:border-blue-500" name="additional_staff_name[]" placeholder="Staff Name" type="text" value="Faith Kemboi"></div><div class="w-36"><div class="relative"><select class="block w-full text-xs text-slate-800 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 pr-7 appearance-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" name="additional_staff_role[]"><option selected="" value="Assisting Nurse">Assisting Nurse</option><option value="Primary Nurse">Primary Nurse</option><option value="Technician">Technician</option><option value="Medical Officer">Medical Officer</option><option value="Clinical Officer">Clinical Officer</option><option value="Surgeon">Surgeon</option><option value="Anesthetist">Anesthetist</option><option value="Other">Other</option></select><div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-slate-400"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div></div></div><button aria-label="Remove staff member" class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-slate-100 rounded-md transition-colors" title="Remove" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button></div><button class="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-700 bg-white border border-dashed border-blue-200 hover:border-blue-300 rounded-lg px-3 py-1.5 shadow-sm transition-colors mt-1" type="button"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>+ Add staff member</button></div></div>
+</div><div class="pt-1" data-purpose="approval-section">
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Approved by <span class="text-[10px] lowercase text-slate-400 font-normal">(optional)</span>
+</label>
+</div>
+<!-- Segmented 3-state toggle button bar -->
+<div class="grid grid-cols-3 bg-slate-100 p-1 rounded-lg border border-slate-200/80 gap-1" role="tablist">
+<button class="approval-tab-btn py-1.5 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5" id="tab-not-required" onclick="setApprovalTab('not-required')" role="tab" type="button">
+              Not required
+            </button>
+<button class="approval-tab-btn py-1.5 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5" id="tab-patient" onclick="setApprovalTab('patient')" role="tab" type="button">
+              Patient
+            </button>
+<button class="approval-tab-btn py-1.5 text-xs font-semibold rounded-md bg-white text-blue-700 shadow-sm transition-all flex items-center justify-center gap-1.5" id="tab-nok" onclick="setApprovalTab('nok')" role="tab" type="button">
+              Next of Kin
+            </button>
+</div>
+<!-- Dynamic Conditional Panels Container -->
+<div class="mt-3">
+<!-- Panel 1: Not Required (empty state message or collapse) -->
+<div class="hidden p-3 rounded-lg bg-slate-50 border border-dashed border-slate-200 text-center" id="content-not-required">
+<p class="text-xs text-slate-500">No secondary approval or sign-off captured for this action.</p>
+</div>
+<!-- Panel 2: Patient Confirmation -->
+<div class="hidden p-3 rounded-lg bg-blue-50/70 border border-blue-200 text-blue-900 flex items-center space-x-2.5" id="content-patient">
+<span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs flex-shrink-0">
+                ✓
+              </span>
+<div class="text-xs">
+<span class="font-semibold">Patient sign-off:</span> baby halima H <span class="text-blue-700">(auto-verified from active admission record)</span>
+</div>
+</div>
+<!-- Panel 3: Next of Kin Expanded Fields -->
+<div class="block p-3.5 rounded-xl bg-slate-50/90 border border-slate-200/90 space-y-3" id="content-nok">
+<div class="grid grid-cols-2 gap-3">
+<!-- NOK Name -->
+<div class="col-span-2 sm:col-span-1">
+<label class="block text-[11px] font-semibold text-slate-600 mb-1" for="nok-name">
+                    Name <span class="text-rose-500">*</span>
+</label>
+<input class="block w-full text-xs text-slate-800 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-blue-500 focus:border-blue-500" id="nok-name" name="nok_name" type="text" value="Halima Hassan (Mother)">
+</div>
+<!-- NOK Relationship -->
+<div class="col-span-2 sm:col-span-1">
+<label class="block text-[11px] font-semibold text-slate-600 mb-1" for="nok-relationship">
+                    Relationship to Patient <span class="text-rose-500">*</span>
+</label>
+<div class="relative">
+<select class="block w-full text-xs text-slate-800 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 pr-8 appearance-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" id="nok-relationship" name="nok_relationship">
+<option selected="" value="Mother">Mother</option>
+<option value="Father">Father</option>
+<option value="Parent">Parent</option>
+<option value="Guardian">Guardian</option>
+<option value="Spouse">Spouse</option>
+<option value="Sibling">Sibling</option>
+<option value="Child">Child</option>
+<option value="Other">Other</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-slate-400">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+<!-- NOK Phone Number -->
+<div class="col-span-2">
+<label class="block text-[11px] font-semibold text-slate-600 mb-1" for="nok-phone">
+                    Phone Number <span class="text-rose-500">*</span>
+</label>
+<div class="relative">
+<input class="block w-full text-xs text-slate-800 bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 tracking-wide" id="nok-phone" name="nok_phone" type="tel" value="+254 712 345 678">
+<div class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-slate-400">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer Actions -->
+<div class="pt-4 border-t border-slate-100 flex items-center justify-end space-x-2.5">
+<button class="px-4 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 rounded-lg transition-colors shadow-sm active:bg-slate-100" type="button">
+            Cancel
+          </button>
+<button class="px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 border border-slate-900 rounded-lg shadow-sm flex items-center space-x-1.5 transition-all active:scale-[0.99]" type="submit">
+<svg class="w-3.5 h-3.5 text-slate-200" fill="currentColor" viewBox="0 0 24 24">
+<path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"></path>
+</svg>
+<span class="">Record</span>
+</button>
+</div>
+</form>
+</div>
+<!-- END: MarkDoneModalDialog -->
+</div>
+<!-- END: ModalOverlay -->
+<!-- BEGIN: InteractiveTabLogic -->
+<script data-purpose="approval-tab-switcher">
+    function setApprovalTab(state) {
+      // Elements
+      const btnNotReq = document.getElementById('tab-not-required');
+      const btnPatient = document.getElementById('tab-patient');
+      const btnNok = document.getElementById('tab-nok');
+
+      const contentNotReq = document.getElementById('content-not-required');
+      const contentPatient = document.getElementById('content-patient');
+      const contentNok = document.getElementById('content-nok');
+
+      const buttons = [
+        { id: 'not-required', btn: btnNotReq, content: contentNotReq },
+        { id: 'patient', btn: btnPatient, content: contentPatient },
+        { id: 'nok', btn: btnNok, content: contentNok }
+      ];
+
+      buttons.forEach(item => {
+        if (item.id === state) {
+          // Active button styling
+          item.btn.className = 'approval-tab-btn py-1.5 text-xs font-semibold rounded-md bg-white text-blue-700 shadow-sm transition-all flex items-center justify-center gap-1.5';
+          item.content.classList.remove('hidden');
+          item.content.classList.add('block');
+        } else {
+          // Inactive button styling
+          item.btn.className = 'approval-tab-btn py-1.5 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 transition-all flex items-center justify-center gap-1.5';
+          item.content.classList.add('hidden');
+          item.content.classList.remove('block');
+        }
+      });
+    }
+
+    // Initialize with 'nok' pre-selected as requested in the design spec
+    document.addEventListener('DOMContentLoaded', () => {
+      setApprovalTab('nok');
+    });
+  </script>
+<!-- END: InteractiveTabLogic -->
+
+
+
+
+</body></html>

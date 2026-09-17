@@ -1,0 +1,785 @@
+<!DOCTYPE html><html class="h-full bg-slate-50" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HMS Core - Inpatient Triage &amp; Clinical Monitoring</title>
+<!-- Tailwind CSS CDN v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0066cc',
+              600: '#0052cc',
+              700: '#003d99',
+              800: '#002966',
+            },
+            clinical: {
+              red: '#dc2626',
+              amber: '#d97706',
+              emerald: '#059669',
+              blue: '#2563eb'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-styling">
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background-color: #f1f5f9;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col text-slate-800 bg-[#f8fafc] text-sm">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+<div class="max-w-[1720px] mx-auto px-4 lg:px-6 h-14 flex items-center justify-between">
+<!-- Brand & Navigation Context -->
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-brand-50 text-brand-600 rounded-md border border-brand-100 flex items-center justify-center font-bold text-lg leading-none shadow-xs">
+          +
+        </div>
+<div class="flex items-baseline space-x-1.5">
+<span class="font-extrabold tracking-tight text-slate-900 text-sm">HOSPITAL</span>
+<span class="text-slate-400 font-light text-xs">|</span>
+<span class="text-slate-500 text-xs hidden sm:inline">Management System</span>
+<span class="text-xs font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 ml-1 border border-slate-200">HMS Core</span>
+</div>
+</div>
+<!-- User controls and actions -->
+<div class="flex items-center space-x-3">
+<!-- Dark Mode Toggle Button -->
+<button aria-label="Toggle theme" class="p-1.5 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full border border-slate-200 transition" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Notification Bell with Count -->
+<div class="relative">
+<button aria-label="Notifications" class="p-1.5 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full border border-slate-200 transition" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<span class="absolute -top-1 -right-1 bg-red-600 text-white font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+            6
+          </span>
+</div>
+<!-- User Profile Dropdown Pill -->
+<div class="flex items-center pl-2 border-l border-slate-200">
+<button class="flex items-center space-x-2 text-xs font-medium text-slate-700 hover:text-slate-900 group" type="button">
+<div class="w-7 h-7 rounded-full bg-blue-100 text-blue-800 font-semibold flex items-center justify-center text-xs border border-blue-200">
+              HM
+            </div>
+<span class="hidden md:inline font-medium">Humphrey Muriungi</span>
+<svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: InpatientBannerSection -->
+<section class="bg-white border-b border-slate-200 pt-3 px-4 lg:px-6">
+<div class="max-w-[1720px] mx-auto">
+<!-- Back Navigation Breadcrumb -->
+<div class="mb-2">
+<a class="inline-flex items-center text-xs font-medium text-brand-600 hover:text-brand-700 hover:underline" href="#">
+<svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          Back to Patient Record
+        </a>
+</div>
+<!-- Patient Dossier Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between pb-3.5 gap-4">
+<!-- Left: Patient Identification and Status -->
+<div class="flex items-start sm:items-center space-x-3.5">
+<!-- Patient Initials Circle -->
+<div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-base border border-emerald-300 shadow-xs flex-shrink-0">
+            bH
+          </div>
+<div>
+<div class="flex flex-wrap items-center gap-2">
+<h1 class="text-lg font-bold text-slate-900 tracking-tight">baby halima H</h1>
+<span class="bg-slate-100 text-slate-600 text-[11px] font-mono font-medium px-2 py-0.5 rounded border border-slate-200">
+                IP: #HMS-2026-8940
+              </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-500"></span>
+                Active Inpatient
+              </span>
+</div>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-2 text-xs text-slate-500 mt-1">
+<span class="font-medium text-slate-700">0 Y · Female</span>
+<span class="text-slate-300">•</span>
+<span class="">Ward: <strong class="font-medium text-slate-700">Newborn Unit (NEW-001)</strong></span>
+<span class="text-slate-300">•</span>
+<span class="text-slate-600">Elective Admission</span>
+</div>
+</div>
+</div>
+<!-- Right: Dossier Action Buttons -->
+<div class="flex flex-wrap items-center gap-2">
+<button class="inline-flex items-center px-3 py-1.5 text-xs font-medium bg-white text-slate-700 border border-slate-300 rounded hover:bg-slate-50 shadow-xs transition" type="button">
+            + Transfer
+          </button>
+<button class="inline-flex items-center px-3 py-1.5 text-xs font-medium bg-white text-slate-700 border border-slate-300 rounded hover:bg-slate-50 shadow-xs transition" type="button">
+            Discharge Summary
+          </button>
+<button class="inline-flex items-center px-3 py-1.5 text-xs font-medium bg-white text-slate-700 border border-slate-300 rounded hover:bg-slate-50 shadow-xs transition" type="button">
+            Set code status
+          </button>
+<button class="inline-flex items-center px-3 py-1.5 text-xs font-medium bg-red-50 text-red-700 border border-red-200 rounded hover:bg-red-100 shadow-xs transition" type="button">
+            Flag isolation
+          </button>
+</div>
+</div>
+<!-- Primary Navigation Tabs (CRITICAL: All 9 original clinical tabs preserved) -->
+<nav aria-label="Patient Modules" class="flex space-x-6 overflow-x-auto text-xs font-medium border-t border-slate-100 pt-1 -mb-px custom-scrollbar">
+<a class="pb-2.5 text-brand-600 font-bold border-b-2 border-brand-600 flex items-center space-x-1 whitespace-nowrap" href="#triage">
+<span class="">Triage</span>
+<span class="w-2 h-2 rounded-full bg-red-500 inline-block" title="Overdue vitals"></span>
+</a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#kardex">
+          Kardex
+        </a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#notes">
+          Notes
+        </a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#medications">
+          Medications
+        </a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#lab-results">
+          Lab Results
+        </a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#radiology">
+          Radiology
+        </a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#billing">
+          Billing
+        </a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#documents">
+          Documents
+        </a>
+<a class="pb-2.5 text-slate-600 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 whitespace-nowrap transition" href="#history">
+          History
+        </a>
+</nav>
+</div>
+</section>
+<!-- END: InpatientBannerSection -->
+<!-- BEGIN: MainContentLayout -->
+<main class="flex-1 max-w-[1720px] w-full mx-auto p-4 lg:p-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- ========================================================================= -->
+<!-- LEFT COLUMN: Triage Subsystem (70% on lg: 8 cols out of 12 or 8/4 layout) -->
+<!-- ========================================================================= -->
+<div class="lg:col-span-8 space-x-0 space-y-4">
+<!-- Sub-Navigation Segmented Architecture (Vitals & Monitoring active) -->
+<div class="bg-white rounded-lg p-1.5 border border-slate-200 shadow-xs flex flex-wrap sm:flex-nowrap items-center justify-between gap-2">
+<div aria-label="Triage Sections" class="inline-flex rounded-md bg-slate-100 p-1 w-full sm:w-auto" role="tablist">
+<!-- Tab 1: Vitals & Monitoring (Active) -->
+<button aria-selected="true" class="flex items-center space-x-2 py-1.5 px-3.5 rounded text-xs font-semibold bg-white text-brand-700 shadow-xs border border-slate-200/80 transition" role="tab" type="button">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Vitals &amp; Monitoring</span>
+</button>
+<!-- Tab 2: Risk Assessments -->
+<button aria-selected="false" class="flex items-center space-x-2 py-1.5 px-3 rounded text-xs font-medium text-slate-600 hover:text-slate-900 transition" role="tab" type="button">
+<span class="">Risk Assessments</span>
+<span class="bg-slate-200/70 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded-full">4 scales</span>
+</button>
+<!-- Tab 3: Clinical Screens -->
+<button aria-selected="false" class="flex items-center space-x-2 py-1.5 px-3 rounded text-xs font-medium text-slate-600 hover:text-slate-900 transition" role="tab" type="button">
+<span class="">Clinical Screens</span>
+<span class="bg-amber-100 text-amber-800 text-[10px] font-semibold px-1.5 py-0.2 rounded-full">2 active</span>
+</button>
+<!-- Tab 4: Fluid Balance -->
+<button aria-selected="false" class="flex items-center space-x-2 py-1.5 px-3 rounded text-xs font-medium text-slate-600 hover:text-slate-900 transition" role="tab" type="button">
+<span class="">Fluid Balance</span>
+<span class="bg-blue-100 text-blue-800 text-[10px] font-semibold px-1.5 py-0.2 rounded-full">+350 mL</span>
+</button>
+</div>
+<!-- Quick action tools on right -->
+<div class="hidden xl:flex items-center text-xs text-slate-500 pr-2 space-x-2">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="">Last Sync: <strong>Just now</strong></span>
+</div>
+</div>
+<!-- Overdue Bedside Monitoring Alert Banner -->
+<div class="bg-red-50 border-l-4 border-red-500 rounded-md p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+<div class="flex items-start sm:items-center space-x-3">
+<div class="p-1 rounded bg-red-100 text-red-600 mt-0.5 sm:mt-0 flex-shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<p class="text-xs font-semibold text-red-900">
+                Monitoring Frequency: Q4H — Last reading taken 4h 15m ago <span class="font-bold underline text-red-700">(Overdue by 15m)</span>
+</p>
+<p class="text-[11px] text-red-700 mt-0.5">
+                Target vital round was 13:15. Immediate bedside assessment required for infant monitoring protocol.
+              </p>
+</div>
+</div>
+<button class="text-xs bg-white text-red-700 hover:bg-red-50 font-medium px-3 py-1.5 rounded border border-red-300 whitespace-nowrap shadow-2xs self-start sm:self-center transition" type="button">
+            Acknowledge / Adjust Frequency
+          </button>
+</div>
+<!-- Top Action Card: NEWS2 Score & Record Vitals -->
+<div class="bg-white rounded-lg border border-slate-200 p-4 shadow-xs">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+<!-- NEWS2 Banner Indicator -->
+<div class="flex-1 bg-amber-50 border border-amber-200 rounded-md p-2.5 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<span class="w-7 h-7 rounded-md bg-amber-500 text-white font-bold flex items-center justify-center text-xs shadow-2xs">
+                  3
+                </span>
+<div>
+<div class="text-xs font-semibold text-amber-900">
+                    National Early Warning Score (NEWS2): <span class="text-amber-800">Score 3 (Low-Medium Clinical Risk)</span>
+</div>
+<p class="text-[11px] text-amber-700">
+                    Protocol recommendation: Monitor Q4H, inform ward sister, re-check temp &amp; SpO₂ response.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Record New Vitals Primary Button -->
+<button class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold rounded bg-brand-600 hover:bg-brand-700 text-white shadow-xs transition" type="button">
+<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              + Record New Vitals
+            </button>
+</div>
+</div>
+<!-- Vitals Trend Chart Card (24h Trend visualization) -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
+<div class="p-3.5 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center space-x-2">
+<svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-700">24-Hour Clinical Trend Visualization</h2>
+</div>
+<!-- Trend Filters / Badges -->
+<div class="flex items-center space-x-2 text-[11px]">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-medium">
+<span class="w-2 h-0.5 bg-blue-600 mr-1.5"></span> HR (Pulse)
+              </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 font-medium">
+<span class="w-2 h-0.5 bg-rose-600 mr-1.5"></span> Temp (°C)
+              </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
+<span class="w-2 h-0.5 bg-emerald-600 mr-1.5"></span> SpO₂ (%)
+              </span>
+</div>
+</div>
+<div class="p-4 bg-slate-50/50">
+<!-- Simulated Clinical Chart Vector Graphic -->
+<div class="relative w-full h-44 bg-white rounded border border-slate-200 p-2 flex flex-col justify-between">
+<!-- Threshold / Reference Bands -->
+<div class="absolute inset-x-8 top-1/4 bottom-1/3 bg-emerald-50/40 border-y border-dashed border-emerald-200 pointer-events-none">
+<span class="absolute right-2 top-1 text-[9px] text-emerald-600 font-mono">Normal Target Zone</span>
+</div>
+<!-- SVG Clinical Trend Line -->
+<svg class="w-full h-32 overflow-visible" preserveAspectRatio="none" viewBox="0 0 500 100">
+<!-- Grid Lines -->
+<line stroke="#f1f5f9" stroke-width="1" x1="0" x2="500" y1="20" y2="20"></line>
+<line stroke="#f1f5f9" stroke-width="1" x1="0" x2="500" y1="50" y2="50"></line>
+<line stroke="#f1f5f9" stroke-width="1" x1="0" x2="500" y1="80" y2="80"></line>
+<!-- Heart Rate Trend Line (Pulse) - Blue -->
+<path d="M 10 65 L 120 62 L 250 58 L 380 50 L 490 52" fill="none" stroke="#2563eb" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="10" cy="65" fill="#2563eb" r="3"></circle>
+<circle cx="120" cy="62" fill="#2563eb" r="3"></circle>
+<circle cx="250" cy="58" fill="#2563eb" r="3"></circle>
+<circle cx="380" cy="50" fill="#2563eb" r="3"></circle>
+<circle cx="490" cy="52" fill="#2563eb" r="3"></circle>
+<!-- SpO2 Trend Line - Emerald -->
+<path d="M 10 30 L 120 28 L 250 32 L 380 30 L 490 68" fill="none" stroke="#059669" stroke-dasharray="3 3" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="10" cy="30" fill="#059669" r="3"></circle>
+<circle cx="120" cy="28" fill="#059669" r="3"></circle>
+<circle cx="250" cy="32" fill="#059669" r="3"></circle>
+<circle cx="380" cy="30" fill="#059669" r="3"></circle>
+<circle cx="490" cy="68" fill="#dc2626" r="4" stroke="#fff" stroke-width="1.5"></circle>
+<!-- Temp Trend Line - Rose -->
+<path d="M 10 45 L 120 42 L 250 44 L 380 40 L 490 75" fill="none" stroke="#e11d48" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="490" cy="75" fill="#dc2626" r="4" stroke="#fff" stroke-width="1.5"></circle>
+</svg>
+<!-- Chart X Axis Labels -->
+<div class="flex justify-between text-[10px] text-slate-400 font-mono px-2 pt-1 border-t border-slate-100">
+<span class="">Yesterday 21:30</span>
+<span class="">05:30 Today</span>
+<span class="">09:30 Today</span>
+<span class="">13:30 Today (Latest)</span>
+<span class="text-red-500 font-semibold">17:30 Scheduled</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Triage Readings Table Card -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
+<div class="p-3.5 border-b border-slate-200 flex items-center justify-between bg-white">
+<div>
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-700">Triage &amp; Vital Signs Observations</h2>
+<p class="text-[11px] text-slate-500">Historical bedside monitoring logs for the current encounter</p>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-[11px] text-slate-500">Showing 4 recorded rounds</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 text-[11px]">
+<th class="py-2.5 px-3 whitespace-nowrap">Time / Date</th>
+<th class="py-2.5 px-3 whitespace-nowrap">BP (mmHg)</th>
+<th class="py-2.5 px-3 whitespace-nowrap">Pulse</th>
+<th class="py-2.5 px-3 whitespace-nowrap">Resp. Rate</th>
+<th class="py-2.5 px-3 whitespace-nowrap">Temp (°C)</th>
+<th class="py-2.5 px-3 whitespace-nowrap">SpO₂ (%)</th>
+<th class="py-2.5 px-3 whitespace-nowrap">FiO₂ / O₂</th>
+<th class="py-2.5 px-3 whitespace-nowrap">Pain</th>
+<th class="py-2.5 px-3 whitespace-nowrap">AVPU</th>
+<th class="py-2.5 px-3 whitespace-nowrap">Recorded By</th>
+<th class="py-2.5 px-3 text-right whitespace-nowrap">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700 font-normal">
+<!-- Row 1: Latest Reading with Hypothermia & Desat Alerts -->
+<tr class="hover:bg-amber-50/40 transition bg-amber-50/15">
+<td class="py-2.5 px-3 font-semibold text-slate-900 whitespace-nowrap">
+                    13:30 <span class="text-slate-400 font-normal text-[10px]">Today</span>
+<span class="inline-block ml-1 px-1.5 py-0.2 text-[9px] bg-blue-100 text-blue-700 rounded font-bold">Latest</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono text-slate-800">76/88</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">72 <span class="text-[10px] text-slate-400">bpm</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">50 <span class="text-[10px] text-slate-400">/min</span></td>
+<!-- Low Temperature Alert -->
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-red-100 text-red-800 border border-red-200">
+                      33.0 °C ↓
+                    </span>
+</td>
+<!-- Low SpO2 Alert -->
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                      90.00 % ↓
+                    </span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Room Air</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-medium text-amber-700">5 / 10</td>
+<td class="py-2.5 px-3 whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-medium">Alert (A)</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Humphrey M.</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="text-brand-600 hover:text-brand-800 font-medium mr-2" type="button">View</button>
+<button class="text-slate-500 hover:text-slate-800" type="button">Edit</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 transition">
+<td class="py-2.5 px-3 font-medium text-slate-900 whitespace-nowrap">
+                    09:30 <span class="text-slate-400 font-normal text-[10px]">Today</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">78/90</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">74 <span class="text-[10px] text-slate-400">bpm</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">48 <span class="text-[10px] text-slate-400">/min</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">36.5 °C</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">96.00 %</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Room Air</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-600">2 / 10</td>
+<td class="py-2.5 px-3 whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-medium">Alert (A)</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Nurse Beatrice</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="text-brand-600 hover:text-brand-800 font-medium mr-2" type="button">View</button>
+<button class="text-slate-500 hover:text-slate-800" type="button">Edit</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 transition">
+<td class="py-2.5 px-3 font-medium text-slate-900 whitespace-nowrap">
+                    05:30 <span class="text-slate-400 font-normal text-[10px]">Today</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">75/88</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">70 <span class="text-[10px] text-slate-400">bpm</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">46 <span class="text-[10px] text-slate-400">/min</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">36.6 °C</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">97.00 %</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Room Air</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-600">1 / 10</td>
+<td class="py-2.5 px-3 whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-medium">Alert (A)</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Nurse Beatrice</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="text-brand-600 hover:text-brand-800 font-medium mr-2" type="button">View</button>
+<button class="text-slate-500 hover:text-slate-800" type="button">Edit</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 transition">
+<td class="py-2.5 px-3 font-medium text-slate-900 whitespace-nowrap">
+                    21:30 <span class="text-slate-400 font-normal text-[10px]">Yesterday</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">74/86</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">72 <span class="text-[10px] text-slate-400">bpm</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">48 <span class="text-[10px] text-slate-400">/min</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">36.8 °C</td>
+<td class="py-2.5 px-3 whitespace-nowrap font-mono">98.00 %</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Room Air</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-600">0 / 10</td>
+<td class="py-2.5 px-3 whitespace-nowrap"><span class="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-medium">Alert (A)</span></td>
+<td class="py-2.5 px-3 whitespace-nowrap text-slate-500">Humphrey M.</td>
+<td class="py-2.5 px-3 text-right whitespace-nowrap">
+<button class="text-brand-600 hover:text-brand-800 font-medium mr-2" type="button">View</button>
+<button class="text-slate-500 hover:text-slate-800" type="button">Edit</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Risk Assessments & Clinical Screens Preview Grid (Excludes CIWA-Ar and Aldrete as instructed) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Card: Risk Assessments (4 Scales) -->
+<div class="bg-white rounded-lg border border-slate-200 p-4 shadow-xs">
+<div class="flex items-center justify-between pb-3 border-b border-slate-100">
+<div class="flex items-center space-x-2">
+<span class="p-1 rounded bg-indigo-50 text-indigo-700">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<h3 class="text-xs font-bold uppercase tracking-wide text-slate-800">Inpatient Risk Scales</h3>
+</div>
+<span class="text-[11px] font-semibold text-slate-400">4 Active Scales</span>
+</div>
+<div class="divide-y divide-slate-100 text-xs mt-1">
+<!-- Scale 1: Fall Risk (Morse) -->
+<div class="py-2.5 flex items-center justify-between">
+<div>
+<span class="font-medium text-slate-800">Morse Fall Scale</span>
+<p class="text-[11px] text-slate-500">Crib rails elevated, low risk precautions</p>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold text-[11px]">Score 15 (Low)</span>
+<button class="text-brand-600 hover:text-brand-800 text-[11px] font-medium" type="button">Re-evaluate</button>
+</div>
+</div>
+<!-- Scale 2: Braden Pressure Ulcer -->
+<div class="py-2.5 flex items-center justify-between">
+<div>
+<span class="font-medium text-slate-800">Braden Q Scale</span>
+<p class="text-[11px] text-slate-500">Neonatal/Pediatric skin integrity protocol</p>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-semibold text-[11px]">Score 14 (Moderate)</span>
+<button class="text-brand-600 hover:text-brand-800 text-[11px] font-medium" type="button">Re-evaluate</button>
+</div>
+</div>
+<!-- Scale 3: Padua / Caprini VTE Risk -->
+<div class="py-2.5 flex items-center justify-between">
+<div>
+<span class="font-medium text-slate-800">Padua / Caprini VTE</span>
+<p class="text-[11px] text-slate-500">Venous thromboembolism baseline</p>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold text-[11px]">Low Risk</span>
+<button class="text-brand-600 hover:text-brand-800 text-[11px] font-medium" type="button">Re-evaluate</button>
+</div>
+</div>
+<!-- Scale 4: Glasgow Coma Scale -->
+<div class="py-2.5 flex items-center justify-between">
+<div>
+<span class="font-medium text-slate-800">Glasgow Coma (GCS)</span>
+<p class="text-[11px] text-slate-500">Eye: 4 · Verbal: 5 · Motor: 6</p>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold text-[11px]">15 / 15</span>
+<button class="text-brand-600 hover:text-brand-800 text-[11px] font-medium" type="button">Check</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card: Clinical Screens (qSOFA & Pain Reassessment) -->
+<div class="bg-white rounded-lg border border-slate-200 p-4 shadow-xs">
+<div class="flex items-center justify-between pb-3 border-b border-slate-100">
+<div class="flex items-center space-x-2">
+<span class="p-1 rounded bg-amber-50 text-amber-700">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<h3 class="text-xs font-bold uppercase tracking-wide text-slate-800">Clinical Screens Active</h3>
+</div>
+<span class="text-[11px] font-semibold text-amber-600">Monitoring Required</span>
+</div>
+<div class="divide-y divide-slate-100 text-xs mt-1">
+<!-- Screen 1: Sepsis qSOFA -->
+<div class="py-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="font-medium text-slate-800">Sepsis Screening (qSOFA / SIRS)</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold text-[11px]">Score 0 (Negative)</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-1">
+                  Altered mentation (0), Systolic BP ≤100 (0), Resp rate ≥22 (0). No sepsis triggers met.
+                </p>
+<div class="mt-2 flex items-center justify-between text-[11px]">
+<span class="text-slate-400">Last screened: 09:30 Today</span>
+<button class="text-brand-600 hover:text-brand-800 font-semibold" type="button">Rescreen Now</button>
+</div>
+</div>
+<!-- Screen 2: Pain Reassessment -->
+<div class="py-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="font-medium text-slate-800">Pain Reassessment Cycle</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 font-semibold text-[11px]">Due at 14:30</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-1">
+                  Previous score 5/10 logged during morning round. Re-evaluation protocol active following non-pharmacologic soothing.
+                </p>
+<div class="mt-2 flex items-center justify-between text-[11px]">
+<span class="text-amber-600 font-medium">NIPS scale recommended for age</span>
+<button class="text-brand-600 hover:text-brand-800 font-semibold" type="button">Log Pain Score</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- RIGHT COLUMN: Persistent Inpatient Sidebar (30% on lg: 4 cols out of 12)  -->
+<!-- ========================================================================= -->
+<aside class="lg:col-span-4 space-y-4">
+<!-- CARD 1: PATIENT SUMMARY (Exact Match with live system) -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
+<div class="px-4 py-3 border-b border-slate-100 flex items-center space-x-2">
+<svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-800">Patient Summary</h2>
+</div>
+<div class="p-4 space-y-2.5 text-xs">
+<div class="flex justify-between">
+<span class="text-slate-500">Age / Gender</span>
+<span class="font-medium text-slate-900">0 Y · female</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Phone</span>
+<span class="text-slate-400 font-mono">—</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Next of Kin</span>
+<span class="font-medium text-slate-800">Halima Hassan (Mother)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Payer</span>
+<span class="font-medium text-slate-800">SHA / NHIF</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Admission Type</span>
+<span class="font-medium text-slate-800">Elective Admission</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Ward / Bed</span>
+<span class="font-medium text-slate-900">Newborn Unit / NEW-001</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Length of Stay</span>
+<span class="font-medium text-slate-900">2 days admitted</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Expected Discharge</span>
+<span class="font-medium text-slate-900">20/09/2026</span>
+</div>
+<div class="flex justify-between items-center pt-1 border-t border-slate-100">
+<span class="text-slate-500">Admission Status</span>
+<span class="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded text-[11px]">active</span>
+</div>
+</div>
+</div>
+<!-- CARD 2: CLINICAL SNAPSHOT (LATEST) -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
+<div class="px-4 py-3 border-b border-slate-100 flex items-center space-x-2">
+<svg class="w-4 h-4 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-800">Clinical Snapshot (Latest)</h2>
+</div>
+<div class="p-4 space-y-2.5 text-xs">
+<div class="flex justify-between items-center">
+<span class="text-slate-500">BP</span>
+<span class="font-bold text-slate-900 font-mono">76/88 mmHg</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-500">Pulse</span>
+<span class="font-bold text-slate-900 font-mono">72 bpm</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-500">Resp. Rate</span>
+<span class="font-bold text-slate-900 font-mono">50 /min</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-500">Temperature</span>
+<span class="font-bold text-red-700 bg-red-50 px-1.5 py-0.2 rounded font-mono">33.0 °C</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-500">SpO₂</span>
+<span class="font-bold text-amber-700 bg-amber-50 px-1.5 py-0.2 rounded font-mono">90.00 %</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-500">Pain Score</span>
+<span class="font-bold text-slate-900 font-mono">5 / 10</span>
+</div>
+<div class="pt-2 border-t border-slate-100">
+<a class="text-xs text-brand-600 hover:text-brand-700 font-medium inline-flex items-center" href="#triage">
+                View all observations
+                <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+<!-- CARD 3: ACTIVE DIAGNOSES -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
+<div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-800">Active Diagnoses</h2>
+</div>
+<a class="text-[11px] text-brand-600 hover:text-brand-800 font-medium" href="#">View all</a>
+</div>
+<div class="p-4 space-y-2 text-xs">
+<div class="flex items-start space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-1.5 flex-shrink-0"></span>
+<div>
+<span class="font-medium text-slate-800">Neonatal Jaundice</span>
+<span class="block text-[11px] text-slate-500">ICD-10: P59.9 · On phototherapy</span>
+</div>
+</div>
+<div class="flex items-start space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-1.5 flex-shrink-0"></span>
+<div>
+<span class="font-medium text-slate-800">Suspected Respiratory Infection</span>
+<span class="block text-[11px] text-slate-500">Mild tachypnea on room air</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 4: PERSISTENT GLOBAL CARE PANEL (Architectural Inpatient Anchor) -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden"><div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between"><div class="flex items-center space-x-2"><svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><h2 class="text-xs font-bold uppercase tracking-wider text-slate-800">Current Medications</h2></div><div class="flex items-center space-x-2"><a class="text-[11px] text-brand-600 hover:text-brand-800 font-medium" href="#medications">+ Prescribe</a><span class="text-slate-300">·</span><a class="text-[11px] text-slate-500 hover:text-slate-800 font-medium" href="#medications">View all</a></div></div><div class="p-4 space-y-2.5 text-xs"><div class="flex items-start justify-between pb-2 border-b border-slate-100"><div><div class="flex items-center space-x-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span><span class="font-medium text-slate-800">Ceftriaxone 150mg</span><span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.2 rounded border border-blue-200">IV BD</span></div><span class="block text-[11px] text-slate-500 mt-0.5">Started 15/09 · Day 3 of 5 · Next: 18:00</span></div><span class="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 self-start">Active</span></div><div class="flex items-start justify-between pb-2 border-b border-slate-100"><div><div class="flex items-center space-x-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span><span class="font-medium text-slate-800">Phototherapy Continuous</span><span class="text-[10px] font-semibold text-amber-800 bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">Special</span></div><span class="block text-[11px] text-slate-500 mt-0.5">Special care nursery · Eye protection on</span></div><span class="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 self-start">Ongoing</span></div><div class="flex items-start justify-between"><div><div class="flex items-center space-x-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></span><span class="font-medium text-slate-800">Maintenance IV Fluids</span><span class="text-[10px] font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded border border-slate-200">IV Infusion</span></div><span class="block text-[11px] text-slate-500 mt-0.5">10% Dextrose + 0.2% Normal Saline @ 12 ml/hr</span></div><span class="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 self-start">Infusing</span></div></div></div><div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden" data-purpose="persistent-global-care-panel">
+<div class="px-4 py-3 bg-slate-50/80 border-b border-slate-200 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-900">Inpatient Care Controls</h2>
+</div>
+<span class="text-[10px] bg-brand-50 text-brand-700 font-semibold px-1.5 py-0.5 rounded border border-brand-200">Encounter Fixed</span>
+</div>
+<div class="p-4 space-y-4 text-xs">
+<!-- 1. Patient Education -->
+<div class="border-b border-slate-100 pb-3">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-slate-800 flex items-center space-x-1.5">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Patient Education</span>
+</span>
+<button class="text-[11px] text-brand-600 hover:text-brand-800 font-medium" type="button">+ Record session</button>
+</div>
+<p class="text-[11px] text-amber-700 mt-1 flex items-center space-x-1 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+<span class="">3 missing pre-discharge topics (Medications, Warning signs, Follow-up)</span>
+</p>
+</div>
+<!-- 2. Lines · Drains · Airways (LDA) -->
+<div class="border-b border-slate-100 pb-3">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-slate-800 flex items-center space-x-1.5">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Lines · Drains · Airways</span>
+</span>
+<button class="text-[11px] text-brand-600 hover:text-brand-800 font-medium" type="button">+ Insert new</button>
+</div>
+<div class="mt-1.5 bg-slate-50 p-2 rounded border border-slate-200/80">
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-medium text-slate-800">1 Active in-situ: Peripheral IV Line</span>
+<span class="text-emerald-700 font-semibold">Patent</span>
+</div>
+<div class="text-[10px] text-slate-500 mt-0.5">
+                  Location: Right hand · Inserted: Day 2 (48h ago) · Dressing clean
+                </div>
+</div>
+</div>
+<!-- 3. Restraint Episodes -->
+<div>
+<div class="flex items-center justify-between">
+<span class="font-semibold text-slate-800 flex items-center space-x-1.5">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Restraint Protocol</span>
+</span>
+<button class="text-[11px] text-slate-600 hover:text-slate-900" type="button">Order restraint</button>
+</div>
+<div class="mt-1 flex items-center justify-between text-[11px] text-slate-500">
+<span class="">0 Active restraint episodes</span>
+<span class="text-emerald-600 font-medium">Clear</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- END: MainContentLayout -->
+<!-- BEGIN: FloatingStatusToast -->
+<!-- Replicating the authentic "Activity marked done" notification seen in live screenshot SCREEN_2 -->
+<div class="fixed bottom-4 right-4 z-40">
+<div class="bg-white border border-emerald-300 shadow-lg rounded-full px-4 py-2 flex items-center space-x-2 text-xs font-medium text-slate-800 animate-fade-in">
+<span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-[10px]">
+        ✓
+      </span>
+<span class="">Activity marked done.</span>
+<span aria-label="sparkles" class="text-base" role="img">✨</span>
+</div>
+</div>
+<!-- END: FloatingStatusToast -->
+
+
+</body></html>
