@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hospital Management System - Admit Patient</title>
+<!-- Tailwind CSS v3 with forms and container plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scrollbars">
+    /* Subtle custom scrollbar for modal internal overflow */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans antialiased min-h-screen relative overflow-hidden">
+<!-- BEGIN: HMS Background Interface -->
+<div class="min-h-screen flex flex-col pointer-events-none select-none filter blur-[1px]" data-purpose="background-app-container">
+<!-- BEGIN: Top Navigation Bar -->
+<header class="bg-white border-b border-gray-200 px-6 py-2.5 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+</svg>
+</div>
+<span class="text-lg font-bold tracking-tight text-gray-800">HMS</span>
+</div>
+<div class="flex items-center space-x-4">
+<!-- Dark mode toggle -->
+<div class="p-2 text-gray-500 hover:text-gray-700 rounded-full cursor-pointer">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Notification Bell -->
+<div class="relative p-2 text-gray-500 cursor-pointer">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="absolute top-1 right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">6</span>
+</div>
+<!-- User Badge -->
+<div class="flex items-center space-x-2 pl-2 border-l border-gray-200">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center">
+            HM
+          </div>
+<span class="text-sm font-medium text-gray-700">Humphrey Muriungi</span>
+<svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</header>
+<!-- END: Top Navigation Bar -->
+<!-- BEGIN: Background Content Body -->
+<main class="flex-1 p-6 max-w-7xl mx-auto w-full">
+<!-- Tab Navigation -->
+<div class="flex space-x-2 mb-4">
+<button class="px-5 py-1.5 rounded-full text-xs font-semibold bg-white text-blue-600 border border-blue-500 shadow-sm">Active</button>
+<button class="px-5 py-1.5 rounded-full text-xs font-medium text-gray-600 hover:bg-white bg-transparent">Discharged</button>
+<button class="px-5 py-1.5 rounded-full text-xs font-medium text-gray-600 hover:bg-white bg-transparent">All</button>
+</div>
+<!-- Admissions Queue Container (Simulated table view) -->
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-6">
+<h2 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">ADMISSIONS QUEUE (7) — PATIENTS AWAITING BED</h2>
+<div class="space-y-4 text-xs">
+<div class="flex items-center justify-between pb-3 border-b border-gray-100">
+<div>
+<div class="font-bold text-gray-900">henry Muriungi</div>
+<div class="text-gray-500">PAT010120260800022 · 26y · male</div>
+</div>
+<div class="text-gray-600">Eddy Richard</div>
+<span class="px-3 py-1 bg-blue-600 text-white rounded text-xs font-semibold">Admit</span>
+</div>
+<div class="flex items-center justify-between pb-3 border-b border-gray-100">
+<div>
+<div class="font-bold text-gray-900">Bramwel Anachoni</div>
+<div class="text-gray-500">PAT110120260500002 · 36y · male</div>
+</div>
+<div class="text-gray-400">—</div>
+<span class="px-3 py-1 bg-blue-600 text-white rounded text-xs font-semibold">Admit</span>
+</div>
+<div class="flex items-center justify-between pb-3 border-b border-gray-100">
+<div>
+<div class="font-bold text-gray-900">Peter Otieno</div>
+<div class="text-gray-500">DHA-003 · 53y · male</div>
+</div>
+<div class="text-gray-400">—</div>
+<span class="px-3 py-1 bg-blue-600 text-white rounded text-xs font-semibold">Admit</span>
+</div>
+</div>
+</div>
+</main>
+<!-- END: Background Content Body -->
+</div>
+<!-- END: HMS Background Interface -->
+<!-- BEGIN: Modal Backdrop (Scrim) -->
+<div class="fixed inset-0 bg-black/45 backdrop-blur-[2px] z-40 transition-opacity" data-purpose="modal-scrim"></div>
+<!-- END: Modal Backdrop -->
+<!-- BEGIN: Admit Patient Modal Dialog -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto" data-purpose="modal-dialog-container">
+<div class="bg-white rounded-2xl shadow-2xl border border-gray-100 w-full max-w-[650px] max-h-[92vh] flex flex-col my-auto relative animate-in fade-in duration-200" data-purpose="modal-window">
+<!-- Modal Header -->
+<header class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+<div class="flex items-center space-x-2.5">
+<!-- Bed Icon -->
+<svg class="w-5 h-5 text-gray-800" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 7h-8v8H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4zm-9 6H3V9h7v4z"></path>
+</svg>
+<h1 class="text-base font-bold text-gray-900 tracking-tight">Admit Patient</h1>
+</div>
+<button aria-label="Close modal" class="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-1.5 rounded-lg transition-colors" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</header>
+<!-- Modal Body (Scrollable content) -->
+<div class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-xs leading-relaxed text-gray-700">
+<!-- Section 1: Ward / Bed Number -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+              Ward <span class="text-red-500">*</span>
+</label>
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<option selected="">— select ward —</option>
+<option>General Male Ward</option>
+<option>GBV Shelter Ward</option>
+<option>Pediatric Ward</option>
+<option>Maternity Wing</option>
+</select>
+</div>
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+              Bed number <span class="text-red-500">*</span>
+</label>
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<option selected="">— pick ward first —</option>
+</select>
+</div>
+</div>
+<!-- Section 2: Kenya SHA Compliance Fields -->
+<div class="bg-blue-50/40 p-3.5 rounded-xl border border-blue-100 space-y-3.5">
+<!-- Payer Type Selector -->
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+              Payer Type <span class="text-red-500">*</span>
+</label>
+<select class="w-full text-xs rounded-lg border border-blue-300 bg-white py-2 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<option selected="" value="SHA">SHA (Social Health Authority)</option>
+<option value="Cash">Cash / Self-Pay</option>
+<option value="Private">Private Insurer</option>
+</select>
+</div>
+<!-- SHA Fields Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+                SHA Beneficiary Number <span class="text-red-500">*</span>
+</label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Enter SHA member number" type="text" value="SHA-9920148-01"/>
+</div>
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+                SHA Pre-authorization Number <span class="text-red-500">*</span>
+</label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Enter SHA pre-authorization reference" type="text" value="SHA-AUTH-2026-88219"/>
+<p class="text-[10px] text-gray-500 mt-1 italic">Required for non-emergency SHA admissions.</p>
+</div>
+</div>
+</div>
+<!-- Section 3: Patient Information Dossier -->
+<div class="pt-1">
+<div class="flex items-center space-x-1.5 mb-2.5">
+<!-- User outline icon -->
+<svg class="w-3.5 h-3.5 text-gray-700" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+</svg>
+<span class="text-[11px] font-bold uppercase tracking-wider text-gray-700">PATIENT INFORMATION</span>
+</div>
+<div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+<div class="text-gray-500">Patient Name</div>
+<div class="font-semibold text-gray-900">henry Muriungi</div>
+<div class="text-gray-500">Patient No</div>
+<div class="text-gray-700 font-mono">PAT010120260800022</div>
+<div class="text-gray-500">Phone</div>
+<div class="text-gray-700">7326357263</div>
+</div>
+</div>
+<!-- Section 4: Admission Type & Expected Discharge -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+              Admission type
+            </label>
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<option selected="">Elective</option>
+<option>Emergency</option>
+<option>Maternity</option>
+</select>
+</div>
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+              Expected discharge
+            </label>
+<div class="relative">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 pl-3 pr-8 text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="dd/mm/yyyy" type="text"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-gray-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 5: Admitting / Consultant Doctor -->
+<div class="pt-1">
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+            Admitting / Consultant Doctor <span class="text-red-500">*</span>
+</label>
+<div class="relative">
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 pl-3 pr-8 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<option>Dr. Humphrey Muriungi (Consultant Maxillofacial Surgeon)</option>
+<option>Dr. Eddy Richard (General Practitioner)</option>
+<option>Dr. Alex Wanjala (Obstetrician/Gynaecologist)</option>
+<option>Dr. Mary Achieng (Internal Medicine)</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-gray-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Section 6: Diagnosis on Admission ICD-11 -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center space-x-2">
+<label class="text-[11px] font-semibold uppercase text-gray-600">
+              Diagnosis on admission
+            </label>
+<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-1.5 py-0.5 rounded">ICD-11</span>
+</div>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Type a diagnosis or code (e.g. pneumonia, 1A00, DA02.2)..." type="text"/>
+<textarea class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm resize-y" placeholder="Optional free-text narrative alongside the ICD-11 code(s) above" rows="2"></textarea>
+</div>
+<!-- Section 7: Referral Details -->
+<div class="pt-1 bg-gray-50/70 p-3.5 rounded-xl border border-gray-200">
+<div class="flex items-center justify-between mb-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500" type="checkbox"/>
+<span class="text-xs font-medium text-gray-800">Patient was referred from another facility</span>
+</label>
+</div>
+<!-- Expanded Referral Sub-fields -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">
+                Referring Facility <span class="text-red-500">*</span>
+</label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. Elwak Sub-County Hospital" type="text" value="Elwak Sub-County Hospital / Dispensary"/>
+</div>
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">
+                Referral Number
+              </label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. REF-2026-00412" type="text" value="REF-2026-00412"/>
+</div>
+</div>
+</div>
+<!-- Section 8: Notes Clause -->
+<div class="pt-1">
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+            Optional notes alongside the ICD-11 clause
+          </label>
+<textarea class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm resize-none" rows="2">Admit for observation</textarea>
+</div>
+</div>
+<!-- END: Modal Body -->
+<!-- BEGIN: Modal Footer -->
+<footer class="flex items-center justify-between px-6 py-3.5 border-t border-gray-100 bg-gray-50/50 rounded-b-2xl shrink-0">
+<!-- Left: Secondary dismiss action -->
+<button class="px-4 py-2 text-xs font-semibold text-gray-700 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg transition-colors shadow-sm focus:outline-none" type="button">
+          Don't queue
+        </button>
+<!-- Right: Action Buttons -->
+<div class="flex items-center space-x-2.5">
+<button class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors focus:outline-none" type="button">
+<!-- Patient dossier icon -->
+<svg class="w-4 h-4 text-blue-600" fill="currentColor" viewbox="0 0 24 24">
+<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path>
+</svg>
+<span>Patient records</span>
+</button>
+<button class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1" type="button">
+<!-- Checkmark icon -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<span>Admit Patient to This Bed</span>
+</button>
+</div>
+</footer>
+<!-- END: Modal Footer -->
+</div>
+</div>
+<!-- END: Admit Patient Modal Dialog -->
+</body></html>
