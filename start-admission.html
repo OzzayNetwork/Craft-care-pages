@@ -1,6 +1,8 @@
-<!DOCTYPE html><html lang="en"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Hospital Management System - Admit Patient</title>
 <!-- Tailwind CSS v3 with forms and container plugins -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -46,7 +48,7 @@
 <header class="bg-white border-b border-gray-200 px-6 py-2.5 flex items-center justify-between">
 <div class="flex items-center space-x-3">
 <div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
-<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
 <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
 </svg>
 </div>
@@ -55,13 +57,13 @@
 <div class="flex items-center space-x-4">
 <!-- Dark mode toggle -->
 <div class="p-2 text-gray-500 hover:text-gray-700 rounded-full cursor-pointer">
-<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </div>
 <!-- Notification Bell -->
 <div class="relative p-2 text-gray-500 cursor-pointer">
-<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 <span class="absolute top-1 right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">6</span>
@@ -72,7 +74,7 @@
             HM
           </div>
 <span class="text-sm font-medium text-gray-700">Humphrey Muriungi</span>
-<svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </div>
@@ -130,16 +132,16 @@
 <!-- Modal Header -->
 <header class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
 <div class="flex items-center space-x-2.5">
-<svg class="w-5 h-5 text-gray-800" fill="currentColor" viewBox="0 0 24 24">
+<svg class="w-5 h-5 text-gray-800" fill="currentColor" viewbox="0 0 24 24">
 <path d="M19 7h-8v8H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4zm-9 6H3V9h7v4z"></path>
 </svg>
 <div>
 <h1 class="text-base font-bold text-gray-900 tracking-tight">Admit Patient</h1>
-<p class="text-xs text-gray-500 font-medium">Patient: <span class="text-gray-900 font-semibold">henry Muriungi</span> · PAT010120260800022</p>
+<p class="text-xs text-gray-500 font-medium">Patient: <span class="text-gray-900 font-semibold">Faith Kemboi</span> · 24y, Female · PAT110120260800022</p>
 </div>
 </div>
 <button aria-label="Close modal" class="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-1.5 rounded-lg transition-colors" type="button">
-<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
@@ -148,40 +150,40 @@
 <div class="px-6 py-3 bg-gray-50/70 border-b border-gray-200 shrink-0 overflow-x-auto custom-scrollbar">
 <nav aria-label="Progress" class="flex items-center justify-between space-x-2 min-w-[620px]">
 <!-- Step 1 Tab -->
-<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-gray-200 bg-blue-50/50 text-blue-900" id="step-tab-1" onclick="switchStep(1)" type="button">
-<span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-1">✓</span>
+<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-blue-500 bg-white text-blue-700 shadow-sm" id="step-tab-1" onclick="switchStep(1)" type="button">
+<span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm" id="step-badge-1">1</span>
 <div class="min-w-0">
 <div class="text-[10px] font-semibold uppercase tracking-wider text-blue-600">Step 1</div>
 <div class="text-xs font-bold text-gray-900 truncate">Bed &amp; Billing</div>
 </div>
 </button>
 <!-- Step 2 Tab -->
-<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-gray-200 bg-blue-50/50 text-blue-900" id="step-tab-2" onclick="switchStep(2)" type="button">
-<span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-2">✓</span>
+<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-transparent bg-transparent text-gray-600 hover:bg-white/80" id="step-tab-2" onclick="switchStep(2)" type="button">
+<span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-2">2</span>
 <div class="min-w-0">
 <div class="text-[10px] font-semibold uppercase tracking-wider text-gray-500">Step 2</div>
 <div class="text-xs font-medium text-gray-700 truncate">Clinical &amp; Diagnosis</div>
 </div>
 </button>
 <!-- Step 3 Tab -->
-<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-gray-200 bg-blue-50/50 text-blue-900" id="step-tab-3" onclick="switchStep(3)" type="button">
-<span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-3">✓</span>
+<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-transparent bg-transparent text-gray-600 hover:bg-white/80" id="step-tab-3" onclick="switchStep(3)" type="button">
+<span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-3">3</span>
 <div class="min-w-0">
 <div class="text-[10px] font-semibold uppercase tracking-wider text-gray-500">Step 3</div>
 <div class="text-xs font-medium text-gray-700 truncate">Safety &amp; History</div>
 </div>
 </button>
 <!-- Step 4 Tab -->
-<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-gray-200 bg-blue-50/50 text-blue-900" id="step-tab-4" onclick="switchStep(4)" type="button">
-<span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-4">✓</span>
+<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-transparent bg-transparent text-gray-600 hover:bg-white/80" id="step-tab-4" onclick="switchStep(4)" type="button">
+<span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-4">4</span>
 <div class="min-w-0">
 <div class="text-[10px] font-semibold uppercase tracking-wider text-gray-500">Step 4</div>
 <div class="text-xs font-medium text-gray-700 truncate">Next of Kin</div>
 </div>
 </button>
 <!-- Step 5 Tab -->
-<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-blue-500 bg-white text-blue-700 shadow-sm" id="step-tab-5" onclick="switchStep(5)" type="button">
-<span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm" id="step-badge-5">5</span>
+<button class="step-tab flex-1 flex items-center space-x-2.5 px-3 py-2 rounded-xl text-left transition-all border border-transparent bg-transparent text-gray-600 hover:bg-white/80" id="step-tab-5" onclick="switchStep(5)" type="button">
+<span class="w-6 h-6 rounded-full bg-gray-200 text-gray-700 font-bold text-xs flex items-center justify-center shrink-0" id="step-badge-5">5</span>
 <div class="min-w-0">
 <div class="text-[10px] font-semibold uppercase tracking-wider text-gray-500">Step 5</div>
 <div class="text-xs font-medium text-gray-700 truncate">Notes &amp; Confirm</div>
@@ -192,40 +194,172 @@
 <!-- Modal Body with 5 Step Panels -->
 <div class="p-6 overflow-y-auto custom-scrollbar flex-1 text-xs leading-relaxed text-gray-700">
 <!-- STEP 1: Bed & Billing -->
-<div class="step-panel space-y-4 hidden" id="step-panel-1">
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="step-panel space-y-4" id="step-panel-1">
+<!-- Admission Type & Active Labour Clinical Status Flag -->
+<div class="bg-white rounded-xl border border-gray-200 p-4 space-y-3.5 shadow-sm">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
 <div>
 <label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
-Ward <span class="text-red-500">*</span>
+          Admission Type <span class="text-red-500">*</span>
 </label>
-<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<option>Elective</option>
+<option>Emergency</option>
+<option selected="">Maternity</option>
+<option>Day Care</option>
+</select>
+</div>
+<div class="p-3 bg-blue-50/50 rounded-xl border border-blue-200 flex items-center justify-between gap-3">
+<div class="space-y-0.5">
+<div class="flex items-center space-x-2">
+<span class="text-xs font-bold text-gray-900">Active Labour</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-700 border border-green-200">Active Labour Protocol Initialized</span>
+</div>
+<p class="text-[11px] text-gray-500 leading-snug">Clinical status flag — triggers automatic Labour Care Guide &amp; Partograph initialization upon admission without separate record setup.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+</label>
+</div>
+</div>
+<!-- Ward & Bed Selection -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1 border-t border-gray-100">
+<div>
+<label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
+          Ward <span class="text-red-500">*</span>
+</label>
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
 <option>— select ward —</option>
-<option selected="">General Male Ward</option>
+<option selected="">Maternity Ward (MAT-02)</option>
+<option>Maternity Wing</option>
+<option>General Male Ward</option>
 <option>GBV Shelter Ward</option>
 <option>Pediatric Ward</option>
-<option>Maternity Wing</option>
 </select>
 </div>
 <div>
 <label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
-Bed number <span class="text-red-500">*</span>
+          Bed number <span class="text-red-500">*</span>
 </label>
-<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
 <option>— pick ward first —</option>
-<option selected="">Bed M-04 (Oxygen Ready)</option>
-<option>Bed M-05</option>
-<option>Bed M-08</option>
+<option selected="">Delivery Bed L-02 (Labour Ward)</option>
+<option>Bed L-01</option>
+<option>Postnatal Bed P-04</option>
 </select>
+</div>
+</div>
+</div>
+<!-- Labour Particulars (Intrapartum Intake) Panel -->
+<div class="bg-blue-50/40 rounded-xl p-5 border border-slate-200 space-y-4">
+<div class="flex items-center justify-between pb-2.5 border-b border-blue-100">
+<div class="flex items-center space-x-2.5">
+<div class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2a5 5 0 0 1 5 5c0 1.95-1.12 3.63-2.76 4.47l.76 1.53H19a3 3 0 0 1 3 3v4a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3h-2v3a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-4a3 3 0 0 1 3-3h4l-.76-1.53A4.992 4.992 0 0 1 7 7a5 5 0 0 1 5-5zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-xs font-bold text-gray-900 tracking-wide uppercase">LABOUR PARTICULARS (INTRAPARTUM INTAKE)</h3>
+<p class="text-[11px] text-gray-500">Populates the Open Labour Record and Inpatient Partograph tab automatically upon admission.</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200">Active Intake</span>
+</div>
+<!-- Gravida / Para, Gestation & EDD -->
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-3.5">
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Gravida <span class="text-red-500">*</span></label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="G1"/>
+</div>
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Para <span class="text-red-500">*</span></label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="P0"/>
+</div>
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Gestation (Weeks) <span class="text-red-500">*</span></label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="38 + 4 wks"/>
+</div>
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Expected Due Date (EDD) <span class="text-red-500">*</span></label>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="26/09/2026"/>
+</div>
+</div>
+<!-- Labour Onset & Membranes Ruptured -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<div class="space-y-1">
+<label class="block text-[10px] font-semibold uppercase text-gray-600">Labour Onset Date/Time &amp; Type <span class="text-red-500">*</span></label>
+<div class="flex space-x-2">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="17/09/2026 05:30"/>
+<select class="w-36 text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-2.5 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm shrink-0">
+<option selected="">Spontaneous</option>
+<option>Induced</option>
+</select>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block text-[10px] font-semibold uppercase text-gray-600">Membranes Ruptured &amp; Liquor</label>
+<div class="flex space-x-2">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="dd/mm/yyyy hh:mm" type="text" value="17/09/2026 09:15"/>
+<select class="w-36 text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-2.5 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm shrink-0">
+<option selected="">Clear</option>
+<option>Intact / Intact membranes</option>
+<option>Meconium-stained</option>
+<option>Blood-stained</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Presentation & Position -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Presentation <span class="text-red-500">*</span></label>
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm">
+<option selected="">Cephalic (Vertex)</option>
+<option>Breech</option>
+<option>Transverse</option>
+<option>Face / Brow</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Position <span class="text-red-500">*</span></label>
+<select class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm">
+<option selected="">Occipito-Anterior (OA)</option>
+<option>Occipito-Posterior (OP)</option>
+<option>Left Occipito-Transverse (LOT)</option>
+<option>Right Occipito-Transverse (ROT)</option>
+</select>
+</div>
+</div>
+<!-- Risk Factors Chips -->
+<div class="space-y-1.5 pt-1 border-t border-blue-100">
+<label class="block text-[10px] font-semibold uppercase text-gray-600">Identified Labour Risk Factors</label>
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200">
+<span>Mild Gestational HTN (Controlled)</span>
+<button class="hover:text-amber-900" type="button">×</button>
+</span>
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200">
+<span>Prolonged Latent Phase Resolved</span>
+<button class="hover:text-blue-900" type="button">×</button>
+</span>
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
+<span>No Previous Uterine Scars</span>
+<button class="hover:text-green-900" type="button">×</button>
+</span>
+<button class="px-2.5 py-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg text-xs font-semibold shadow-sm" type="button">+ Add Risk Factor</button>
+</div>
 </div>
 </div>
 <!-- Kenya SHA Compliance Fields -->
 <div class="bg-blue-50/40 p-4 rounded-xl border border-blue-100 space-y-3.5">
 <div>
 <label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
-Payer Type <span class="text-red-500">*</span>
+        Payer Type <span class="text-red-500">*</span>
 </label>
 <select class="w-full text-xs rounded-lg border border-blue-300 bg-white py-2 px-3 text-gray-800 font-medium focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm">
-<option selected="" value="SHA">SHA (Social Health Authority)</option>
+<option selected="" value="SHA">SHA (Social Health Authority) - Linda Mama / Maternity</option>
 <option value="Cash">Cash / Self-Pay</option>
 <option value="Private">Private Insurer</option>
 </select>
@@ -233,16 +367,16 @@ Payer Type <span class="text-red-500">*</span>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
 <div>
 <label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
-SHA Beneficiary Number <span class="text-red-500">*</span>
+          SHA Beneficiary Number <span class="text-red-500">*</span>
 </label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Enter SHA member number" type="text" value="SHA-9920148-01">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Enter SHA member number" type="text" value="SHA-9920148-01"/>
 </div>
 <div>
 <label class="block text-[11px] font-semibold uppercase text-gray-600 mb-1">
-SHA Pre-authorization Number <span class="text-red-500">*</span>
+          SHA Pre-authorization Number <span class="text-red-500">*</span>
 </label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Enter SHA pre-authorization reference" type="text" value="SHA-AUTH-2026-88219">
-<p class="text-[10px] text-gray-500 mt-1 italic">Required for non-emergency SHA admissions.</p>
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Enter SHA pre-authorization reference" type="text" value="SHA-AUTH-2026-88219"/>
+<p class="text-[10px] text-gray-500 mt-1 italic">Auto-validated under Maternity Benefit Package.</p>
 </div>
 </div>
 </div>
@@ -252,7 +386,7 @@ SHA Pre-authorization Number <span class="text-red-500">*</span>
 <!-- Patient Information Dossier -->
 <div class="bg-gray-50/70 p-3.5 rounded-xl border border-gray-200">
 <div class="flex items-center space-x-1.5 mb-2.5">
-<svg class="w-3.5 h-3.5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+<svg class="w-3.5 h-3.5 text-gray-700" fill="currentColor" viewbox="0 0 24 24">
 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
 </svg>
 <span class="text-[11px] font-bold uppercase tracking-wider text-gray-700">PATIENT INFORMATION</span>
@@ -283,9 +417,9 @@ Admission type
 Expected discharge
 </label>
 <div class="relative">
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 pl-3 pr-8 text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="dd/mm/yyyy" type="text" value="28/05/2026">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 pl-3 pr-8 text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="dd/mm/yyyy" type="text" value="28/05/2026"/>
 <div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-gray-400">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </div>
@@ -305,7 +439,7 @@ Admitting / Consultant Doctor <span class="text-red-500">*</span>
 <option>Dr. Mary Achieng (Internal Medicine)</option>
 </select>
 <div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-gray-400">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </div>
@@ -319,14 +453,14 @@ Diagnosis on admission
 </label>
 <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-1.5 py-0.5 rounded">ICD-11</span>
 </div>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Type a diagnosis or code (e.g. pneumonia, 1A00, DA02.2)..." type="text" value="DA02.2 - Odontogenic cysts of jaw">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm" placeholder="Type a diagnosis or code (e.g. pneumonia, 1A00, DA02.2)..." type="text" value="DA02.2 - Odontogenic cysts of jaw"/>
 <textarea class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm resize-y" placeholder="Optional free-text narrative alongside the ICD-11 code(s) above" rows="2">Elective enucleation and curettage scheduled. Patient pre-operative workup complete.</textarea>
 </div>
 <!-- Referral Details -->
 <div class="bg-gray-50/70 p-3.5 rounded-xl border border-gray-200">
 <div class="flex items-center justify-between mb-3">
 <label class="flex items-center space-x-2 cursor-pointer">
-<input checked="" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500" type="checkbox">
+<input checked="" class="w-4 h-4 rounded text-blue-600 border-gray-300 focus:ring-blue-500" type="checkbox"/>
 <span class="text-xs font-medium text-gray-800">Patient was referred from another facility</span>
 </label>
 </div>
@@ -335,13 +469,13 @@ Diagnosis on admission
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">
 Referring Facility <span class="text-red-500">*</span>
 </label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. Elwak Sub-County Hospital" type="text" value="Elwak Sub-County Hospital / Dispensary">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. Elwak Sub-County Hospital" type="text" value="Elwak Sub-County Hospital / Dispensary"/>
 </div>
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">
 Referral Number
 </label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. REF-2026-00412" type="text" value="REF-2026-00412">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. REF-2026-00412" type="text" value="REF-2026-00412"/>
 </div>
 </div>
 </div>
@@ -356,7 +490,7 @@ Referral Number
 <label class="text-[11px] font-bold uppercase tracking-wider text-red-700">Known Allergies &amp; Adverse Drug Reactions</label>
 </div>
 <label class="flex items-center space-x-1.5 cursor-pointer">
-<input class="w-3.5 h-3.5 rounded text-blue-600 border-gray-300 focus:ring-blue-500" type="checkbox">
+<input class="w-3.5 h-3.5 rounded text-blue-600 border-gray-300 focus:ring-blue-500" type="checkbox"/>
 <span class="text-xs font-semibold text-gray-700">No known drug allergies (NKDA)</span>
 </label>
 </div>
@@ -370,7 +504,7 @@ Referral Number
 <button class="hover:text-red-900" type="button">×</button>
 </span>
 <div class="flex items-center space-x-1">
-<input class="text-xs rounded-lg border border-gray-300 bg-white py-1 px-2.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-44" placeholder="Add allergy (e.g. Aspirin)..." type="text">
+<input class="text-xs rounded-lg border border-gray-300 bg-white py-1 px-2.5 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm w-44" placeholder="Add allergy (e.g. Aspirin)..." type="text"/>
 <button class="px-2.5 py-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg text-xs font-semibold shadow-sm" type="button">+ Add</button>
 </div>
 </div>
@@ -387,7 +521,7 @@ Referral Number
 <button class="px-3 py-1 rounded-full text-xs font-medium border border-gray-300 bg-white text-gray-700 hover:bg-gray-50" type="button">HIV/AIDS</button>
 </div>
 <div class="pt-1">
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="Other chronic conditions or past surgical history..." type="text">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="Other chronic conditions or past surgical history..." type="text"/>
 </div>
 </div>
 <!-- Seizure / Fit History -->
@@ -396,11 +530,11 @@ Referral Number
 <label class="text-[11px] font-bold uppercase tracking-wider text-gray-700">Seizure / Fit History</label>
 <div class="flex items-center space-x-4">
 <label class="flex items-center space-x-1.5 cursor-pointer text-xs font-medium text-gray-700">
-<input class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300" name="seizure_history" type="radio" value="no">
+<input class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300" name="seizure_history" type="radio" value="no"/>
 <span class="">No</span>
 </label>
 <label class="flex items-center space-x-1.5 cursor-pointer text-xs font-semibold text-blue-700">
-<input checked="" class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300" name="seizure_history" type="radio" value="yes">
+<input checked="" class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300" name="seizure_history" type="radio" value="yes"/>
 <span class="">Yes</span>
 </label>
 </div>
@@ -408,15 +542,15 @@ Referral Number
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 border-t border-gray-100">
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">Last Episode Date</label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="dd/mm/yyyy" type="text" value="14/01/2025">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="dd/mm/yyyy" type="text" value="14/01/2025"/>
 </div>
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">Known Triggers</label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Missed medications, sleep deprivation">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Missed medications, sleep deprivation"/>
 </div>
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">Current Anti-epileptic Med</label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Sodium Valproate 500mg">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Sodium Valproate 500mg"/>
 </div>
 </div>
 </div>
@@ -468,7 +602,7 @@ Referral Number
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Full Name <span class="text-red-500">*</span></label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Grace Muthoni Muriungi">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Grace Muthoni Muriungi"/>
 </div>
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Relationship <span class="text-red-500">*</span></label>
@@ -482,7 +616,7 @@ Referral Number
 </div>
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-600 mb-1">Phone Number <span class="text-red-500">*</span></label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="+254 722 841 902">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="+254 722 841 902"/>
 </div>
 </div>
 </div>
@@ -495,11 +629,11 @@ Referral Number
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">Alternate Contact Name</label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. David Mwangi" type="text">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="e.g. David Mwangi" type="text"/>
 </div>
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">Alternate Phone Number</label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="+254 7XX XXX XXX" type="text">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" placeholder="+254 7XX XXX XXX" type="text"/>
 </div>
 </div>
 </div>
@@ -509,17 +643,17 @@ Referral Number
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">County</label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Nairobi County">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Nairobi County"/>
 </div>
 <div>
 <label class="block text-[10px] font-semibold uppercase text-gray-500 mb-1">Sub-county / Estate / Village</label>
-<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Westlands, Mountain View Estate House #14">
+<input class="w-full text-xs rounded-lg border border-gray-300 bg-white py-1.5 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm" type="text" value="Westlands, Mountain View Estate House #14"/>
 </div>
 </div>
 </div>
 </div>
 <!-- STEP 5: Notes & Confirm -->
-<div class="step-panel space-y-4" id="step-panel-5">
+<div class="step-panel space-y-4 hidden" id="step-panel-5">
 <!-- Admission Review Card -->
 <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/40 space-y-3">
 <div class="flex items-center justify-between pb-2 border-b border-blue-100">
@@ -550,43 +684,31 @@ Clinical &amp; Administrative Notes alongside the ICD-11 clause
 <textarea class="w-full text-xs rounded-lg border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm resize-none" rows="3">Admit for observation and pre-op fasting from 22:00. Fasting blood sugar check at 06:00. Maintain continuous monitor of blood pressure.</textarea>
 </div>
 <!-- Queue & Observation Toggles -->
-
 </div>
 </div>
 <!-- END: Modal Body -->
 <!-- BEGIN: Modal Footer -->
-<footer class="flex items-center justify-between px-6 py-3.5 border-t border-gray-100 bg-gray-50/50 rounded-b-2xl shrink-0">
-<!-- Left: Back button & Patient Records button -->
+<footer class="flex items-center justify-between px-6 py-3.5 border-t border-gray-100 bg-gray-50/50 rounded-b-2xl shrink-0"><!-- Left: Cancel button -->
 <div class="flex items-center space-x-2">
-<button class="px-4 py-2 text-xs font-semibold text-gray-700 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg transition-colors shadow-sm focus:outline-none disabled:opacity-40 disabled:pointer-events-none" id="prev-btn" onclick="prevStep()" type="button">
-Back
-</button>
+<button class="px-4 py-2 text-xs font-semibold text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none" type="button">
+    Cancel
+  </button>
 <button class="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors focus:outline-none" type="button">
-<svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+<svg class="w-4 h-4 text-blue-600" fill="currentColor" viewbox="0 0 24 24">
 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path>
 </svg>
-<span class="">Patient records</span>
+<span>Patient records</span>
 </button>
 </div>
-<!-- Right: Action Buttons -->
+<!-- Right: Primary Action -->
 <div class="flex items-center space-x-2.5">
-<button class="px-4 py-2 text-xs font-semibold text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none" type="button">
-Cancel
-</button>
-<button class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 hidden" id="next-btn" onclick="nextStep()" type="button">
-<span class="">Next: Clinical Team</span>
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<button class="inline-flex items-center space-x-1.5 px-5 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1" id="next-btn" onclick="nextStep()" type="button">
+<span>Next: Clinical &amp; Diagnosis</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
 <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
 </svg>
 </button>
-<button class="inline-flex items-center space-x-1.5 px-5 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1" id="submit-btn" type="button">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
-</svg>
-<span class="">Admit Patient to This Bed</span>
-</button>
-</div>
-</footer>
+</div></footer>
 <!-- Stepper Interactive Script -->
 <script>
   var currentStep = 1;
@@ -656,6 +778,4 @@ Cancel
 </div>
 </div>
 <!-- END: Admit Patient Modal Dialog -->
-
-
 </body></html>
