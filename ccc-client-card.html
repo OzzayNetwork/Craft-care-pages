@@ -1,0 +1,1541 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HMS - Client Card (Joshua Mwangi)</title>
+<!-- Tailwind CSS v3 with Forms & Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+            },
+            primary: {
+              DEFAULT: '#15803d',
+              container: '#15803d',
+              dark: '#166534',
+              hover: '#16a34a'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9ff;
+      color: #0b1c30;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased text-[#0b1c30] bg-[#f8f9ff]">
+<!-- Top Navigation Bar -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<!-- Hospital Logo & System Title -->
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-xs font-black text-xl">
+<span class="material-symbols-outlined text-emerald-700 !text-2xl">local_hospital</span>
+</div>
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block leading-none">Hospital Management System</span>
+<span class="text-lg font-bold text-slate-900 tracking-tight leading-none">HMS • CCC Module</span>
+</div>
+</div>
+<!-- Top Utility Controls -->
+<div class="flex items-center space-x-3 sm:space-x-4">
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-colors" title="Toggle Theme">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="w-9 h-9 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-slate-100 relative transition-colors" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 bg-rose-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full ring-2 ring-white">9+</span>
+</button>
+<div class="flex items-center pl-3 border-l border-slate-200 space-x-2.5 cursor-pointer hover:opacity-90">
+<div class="w-8 h-8 rounded-full bg-emerald-700 text-white font-semibold text-xs flex items-center justify-center ring-2 ring-emerald-100">
+            KN
+          </div>
+<div class="hidden sm:flex items-center space-x-1">
+<span class="text-xs font-semibold text-slate-800">Dr. Kelvin Njuguna</span>
+<span class="material-symbols-outlined !text-sm text-slate-400">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Patient View -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full space-y-4">
+<!-- 1. TOP BREADCRUMB ROW -->
+<div class="flex flex-wrap items-center justify-between gap-3 py-1 text-xs">
+<div class="flex items-center space-x-3">
+<a class="inline-flex items-center px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 rounded-md font-semibold shadow-2xs transition-colors space-x-1.5" href="#">
+<span class="material-symbols-outlined !text-sm">arrow_back</span>
+<span class="">Back to Active Clients</span>
+</a>
+<span class="text-slate-300">|</span>
+<nav class="flex items-center space-x-1.5 text-slate-500 font-medium">
+<span class="text-slate-500 hover:text-slate-700 cursor-pointer">CCC Module</span>
+<span class="text-slate-300">/</span>
+<span class="text-slate-500 hover:text-slate-700 cursor-pointer">Active Clients</span>
+<span class="text-slate-300">/</span>
+<span class="text-slate-900 font-semibold">Joshua Mwangi (ART-2023-1004)</span>
+</nav>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+          Active in Care
+        </span>
+</div>
+</div>
+<!-- 1. CLIENT SUMMARY CARD -->
+<section class="bg-white border border-slate-200 rounded-xl p-5 shadow-xs" data-purpose="client-summary-card">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+<!-- Left Demographics -->
+<div class="space-y-2">
+<div class="flex flex-wrap items-center gap-3">
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight">Joshua Mwangi</h1>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+<span class="material-symbols-outlined !text-sm mr-1 text-slate-500">lock</span>
+              Confidential Record
+            </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+              Male • 34y
+            </span>
+</div>
+<div class="flex flex-wrap items-center gap-y-1.5 text-xs text-slate-600 font-medium gap-x-2.5">
+<span class="font-bold text-slate-800 font-mono">ART-2023-1004</span>
+<span class="text-slate-300">•</span>
+<span class="font-mono text-slate-700 font-semibold">CCC CCC-1004</span>
+<span class="text-slate-300">•</span>
+<span class="">DOB <strong>1992-02-19</strong> (34y)</span>
+<span class="text-slate-300">•</span>
+<span class="capitalize">Male</span>
+<span class="text-slate-300">•</span>
+<span class="font-mono text-slate-700 flex items-center">
+<span class="material-symbols-outlined !text-sm mr-0.5 text-slate-400">phone</span>
+              0722111107
+            </span>
+</div>
+</div>
+<!-- Right ART Regimen Status -->
+<div class="lg:text-right flex flex-col sm:flex-row lg:flex-col sm:items-center lg:items-end justify-between gap-1.5 border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100">
+<div class="flex items-center space-x-2">
+<span class="text-xs text-slate-400 font-medium">Current Regimen:</span>
+<span class="text-xl font-bold text-slate-900 tracking-tight font-mono">AZT-3TC-LPVr</span>
+<span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded-full border border-blue-200">2nd Line</span>
+</div>
+<div class="text-xs text-slate-500 space-x-2">
+<span class="">Started ART: <strong class="text-slate-800 font-mono">2024-05-09</strong></span>
+<span class="text-slate-300">|</span>
+<span class="">Next appt: <strong class="text-emerald-700 font-bold font-mono">2026-05-16</strong></span>
+</div>
+</div>
+</div>
+<!-- Action Bar below Summary Card -->
+<div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2.5">
+<!-- Primary Button -->
+<div class="flex items-center space-x-2">
+<button class="inline-flex items-center justify-center px-4 py-2 bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors space-x-2" id="btn-record-visit" onclick="toggleModal('modal-record-visit', true)">
+<span class="material-symbols-outlined !text-lg text-white">add_notes</span>
+<span class="">+ Record Visit</span>
+</button>
+</div>
+<!-- Secondary Button Group / Overflow -->
+<div class="flex flex-wrap items-center gap-2">
+<button class="inline-flex items-center px-3 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs font-semibold rounded-lg transition-colors space-x-1.5" onclick="switchTab('tab-btn-labs', 'tab-panel-labs'); toggleModal('modal-order-lab', true)">
+<span class="material-symbols-outlined !text-base">biotech</span>
+<span class="">Record Viral Load</span>
+</button>
+<button class="inline-flex items-center px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-xs font-semibold rounded-lg transition-colors space-x-1.5" onclick="alert('Switch Regimen Wizard: Opening current regimen transition protocol (AZT-3TC-LPVr → 3rd Line/Alternative).')">
+<span class="material-symbols-outlined !text-base">swap_horiz</span>
+<span class="">Switch Regimen</span>
+</button>
+<button class="inline-flex items-center px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-lg transition-colors space-x-1.5" onclick="toggleModal('modal-order-lab', true)"><span class="material-symbols-outlined !text-base text-slate-500">science</span><span class="">+ Order Labs (One or Multiple)</span></button>
+<button class="inline-flex items-center px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-lg transition-colors space-x-1.5" onclick="toggleModal('modal-order-rad', true)"><span class="material-symbols-outlined !text-base text-slate-500">radiology</span><span class="">+ Order Radiology (One or Multiple)</span></button>
+<button class="inline-flex items-center px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-lg transition-colors space-x-1.5" onclick="toggleModal('modal-issue-med', true)"><span class="material-symbols-outlined !text-base text-slate-500">medication</span><span class="">+ Prescribe Drugs (One or Multiple)</span></button>
+<button class="inline-flex items-center px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-lg transition-colors space-x-1.5" onclick="alert('Client demographics editing panel will be launched for Joshua Mwangi.')">
+<span class="material-symbols-outlined !text-base text-slate-400">edit</span>
+<span class="">Update Client</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 2. HORIZONTAL TAB BAR -->
+<div class="border-b border-slate-200 overflow-x-auto custom-scrollbar bg-white rounded-t-lg px-2 shadow-2xs" data-purpose="client-tabs">
+<div class="flex space-x-6 min-w-max text-sm font-medium">
+<!-- 1. Overview Tab -->
+<button class="tab-button py-3 border-b-2 flex items-center space-x-2 transition-colors border-emerald-700 text-emerald-800 font-bold" id="tab-btn-overview" onclick="switchTab('tab-btn-overview', 'tab-panel-overview')">
+<span class="material-symbols-outlined !text-lg">dashboard</span>
+<span class="">Overview</span>
+</button>
+<!-- 2. Visit History -->
+<button class="tab-button py-3 border-b-2 flex items-center space-x-2 transition-colors border-transparent text-slate-500 hover:text-slate-800" id="tab-btn-visits" onclick="switchTab('tab-btn-visits', 'tab-panel-visits')">
+<span class="material-symbols-outlined !text-lg">history_edu</span>
+<span class="">Visit History</span>
+<span class="bg-slate-100 text-slate-600 text-xs py-0.5 px-2 rounded-full font-semibold">8</span>
+</button>
+<!-- 3. Lab Orders & Results -->
+<button class="tab-button py-3 border-b-2 flex items-center space-x-2 transition-colors border-transparent text-slate-500 hover:text-slate-800" id="tab-btn-labs" onclick="switchTab('tab-btn-labs', 'tab-panel-labs')">
+<span class="material-symbols-outlined !text-lg">biotech</span>
+<span class="">Lab Orders &amp; Results</span>
+<span class="bg-blue-100 text-blue-800 text-xs py-0.5 px-2 rounded-full font-semibold">3</span>
+</button>
+<!-- 4. Radiology -->
+<button class="tab-button py-3 border-b-2 flex items-center space-x-2 transition-colors border-transparent text-slate-500 hover:text-slate-800" id="tab-btn-rad" onclick="switchTab('tab-btn-rad', 'tab-panel-rad')">
+<span class="material-symbols-outlined !text-lg">radiology</span>
+<span class="">Radiology</span>
+<span class="bg-slate-100 text-slate-600 text-xs py-0.5 px-2 rounded-full font-semibold">1</span>
+</button>
+<!-- 5. Medications -->
+<button class="tab-button py-3 border-b-2 flex items-center space-x-2 transition-colors border-transparent text-slate-500 hover:text-slate-800" id="tab-btn-meds" onclick="switchTab('tab-btn-meds', 'tab-panel-meds')">
+<span class="material-symbols-outlined !text-lg">prescriptions</span>
+<span class="">Medications</span>
+<span class="bg-slate-100 text-slate-600 text-xs py-0.5 px-2 rounded-full font-semibold">5</span>
+</button>
+<!-- 6. Immunizations -->
+<button class="tab-button py-3 border-b-2 flex items-center space-x-2 transition-colors border-transparent text-slate-500 hover:text-slate-800" id="tab-btn-immunizations" onclick="switchTab('tab-btn-immunizations', 'tab-panel-immunizations')">
+<span class="material-symbols-outlined !text-lg">vaccines</span>
+<span class="">Immunizations (&lt;18y schedule)</span>
+<span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-200">Paediatric only (Client 34y)</span>
+</button>
+</div>
+</div>
+<!-- 3. TAB CONTENTS CONTAINER -->
+<div id="tab-content-container">
+<!-- ================= 3A. OVERVIEW TAB ================= -->
+<div class="tab-panel space-y-6" id="tab-panel-overview">
+<!-- Top Grid: 2 Columns (Viral Load Trend & Regimen History) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Viral Load Trend Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs flex flex-col justify-between">
+<div>
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-rose-600">query_stats</span>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Viral Load Trend</h3>
+</div>
+<span class="text-xs text-slate-500 font-medium bg-white px-2 py-0.5 rounded border border-slate-200">Target: &lt;200 c/mL</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-4 py-3">Collected</th>
+<th class="px-4 py-3">Result</th>
+<th class="px-4 py-3">Indication</th>
+<th class="px-4 py-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 font-mono font-bold text-rose-600 text-sm">2,400 c/mL</td>
+<td class="px-4 py-3 text-slate-600">Repeat (high VL failure workup)</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-rose-100 text-rose-700 px-2.5 py-1 rounded-full font-bold text-[11px] border border-rose-200">
+                          Unsuppressed
+                        </span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2025-09-12</td>
+<td class="px-4 py-3 font-mono font-bold text-emerald-700 text-sm">40 c/mL</td>
+<td class="px-4 py-3 text-slate-600">Routine Surveillance</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-bold text-[11px] border border-emerald-200">
+                          Suppressed
+                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="px-4 py-2.5 bg-slate-50/70 border-t border-slate-100 text-xs text-slate-600 flex justify-between items-center">
+<span class="">Next VL Sample Due: <strong class="text-slate-800 font-mono">2026-06-10</strong> (Post EAC-3)</span>
+<button class="text-emerald-700 hover:text-emerald-900 font-semibold flex items-center" onclick="switchTab('tab-btn-labs', 'tab-panel-labs')">
+<span class="">View Lab Graph</span>
+<span class="material-symbols-outlined !text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Regimen History Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs flex flex-col justify-between">
+<div>
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-blue-600">medication_liquid</span>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Regimen History</h3>
+</div>
+<span class="text-xs bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded font-bold">Active: Second-Line</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-4 py-3">Date</th>
+<th class="px-4 py-3">From</th>
+<th class="px-4 py-3">To</th>
+<th class="px-4 py-3">Reason</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700 font-medium">
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 text-slate-400 line-through">TLD</td>
+<td class="px-4 py-3 font-bold text-slate-900 font-mono">AZT-3TC-LPVr</td>
+<td class="px-4 py-3 text-rose-700 font-semibold">Treatment failure / Virological rebound</td>
+</tr>
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2024-05-09</td>
+<td class="px-4 py-3 text-slate-400">Baseline</td>
+<td class="px-4 py-3 font-medium text-slate-800 font-mono">TLD</td>
+<td class="px-4 py-3 text-slate-600">First line initiation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="px-4 py-2.5 bg-slate-50/70 border-t border-slate-100 text-xs text-slate-600 flex justify-between items-center">
+<span class="">Current Duration on 2nd Line: <strong class="text-slate-800">7 days</strong></span>
+<span class="text-slate-500">Clinician: <strong class="text-slate-700">Dr. K. Njuguna</strong></span>
+</div>
+</div>
+</div>
+<!-- Recent Encounters (Last 3 Visits) Snapshot Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-600">calendar_month</span>
+                Recent Encounters (Last 3 Visits)
+              </h3>
+<p class="text-xs text-slate-500 mt-0.5">Quick clinical snapshot from MoH 257 Master Record</p>
+</div>
+<button class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 flex items-center" onclick="switchTab('tab-btn-visits', 'tab-panel-visits')">
+<span class="">View all in Visit History</span>
+<span class="material-symbols-outlined !text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-4 py-3">Date</th>
+<th class="px-4 py-3">Visit Type</th>
+<th class="px-4 py-3">Adherence</th>
+<th class="px-4 py-3">Next Appointment</th>
+<th class="px-4 py-3">Attending</th>
+<th class="px-4 py-3 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<tr class="hover:bg-slate-50 transition-colors bg-emerald-50/20">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3">
+<span class="font-bold text-slate-900">Clinical Review</span>
+<span class="text-slate-500 block text-[11px]">High VL Failure Workup &amp; Switch</span>
+</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                      Fair (82%)
+                    </span>
+</td>
+<td class="px-4 py-3 font-bold text-slate-900 font-mono">2026-05-16</td>
+<td class="px-4 py-3 text-slate-700">Dr. K. Njuguna</td>
+<td class="px-4 py-3 text-right">
+<button class="text-emerald-700 hover:text-emerald-900 font-bold flex items-center justify-end ml-auto" onclick="switchTab('tab-btn-visits', 'tab-panel-visits'); showFullVisitNote();">
+<span class="">Open Note</span>
+<span class="material-symbols-outlined !text-sm ml-0.5">arrow_forward</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-01-12</td>
+<td class="px-4 py-3">
+<span class="font-medium text-slate-800">Routine Drug Refill</span>
+<span class="text-slate-400 block text-[11px]">Pharmacy Fast-Track</span>
+</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">
+                      Good (&gt;95%)
+                    </span>
+</td>
+<td class="px-4 py-3 font-medium text-slate-800 font-mono">2026-03-10</td>
+<td class="px-4 py-3 text-slate-600">Clinician M. Omondi</td>
+<td class="px-4 py-3 text-right">
+<button class="text-slate-600 hover:text-slate-900 font-medium" onclick="switchTab('tab-btn-visits', 'tab-panel-visits')">View</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2025-10-15</td>
+<td class="px-4 py-3">
+<span class="font-medium text-slate-800">Routine Clinical Review</span>
+<span class="text-slate-400 block text-[11px]">Stable on TLD</span>
+</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">
+                      Good (&gt;95%)
+                    </span>
+</td>
+<td class="px-4 py-3 font-medium text-slate-800 font-mono">2026-01-12</td>
+<td class="px-4 py-3 text-slate-600">Dr. K. Njuguna</td>
+<td class="px-4 py-3 text-right">
+<button class="text-slate-600 hover:text-slate-900 font-medium" onclick="switchTab('tab-btn-visits', 'tab-panel-visits')">View</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Chronic Conditions & Known Allergies Card -->
+<div class="bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-4">
+<div class="flex items-center justify-between pb-3 border-b border-slate-100">
+<div>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-emerald-700">medical_information</span>
+                Chronic Conditions &amp; Known Allergies
+              </h3>
+<p class="text-xs text-slate-500">Multi-condition management and documented severe drug hypersensitivities</p>
+</div>
+<button class="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition" onclick="toggleModal('modal-record-visit', true)" type="button">
+<span class="material-symbols-outlined !text-base mr-1">add</span>
+              Add Condition
+            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Condition 1: Hypertension -->
+<div class="bg-slate-50/80 rounded-lg p-3.5 border border-slate-200 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-bold text-slate-900 text-sm">Hypertension (Stage 1)</span>
+<span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2 py-0.5 rounded-full border border-emerald-200">Active / Controlled</span>
+</div>
+<p class="text-xs text-slate-700">Current Non-ART Rx: <strong class="text-slate-900">Amlodipine 5mg OD</strong></p>
+<div class="text-[11px] text-slate-500 flex justify-between pt-1">
+<span class="">Target BP &lt;140/90 maintained</span>
+<span class="font-mono">Diagnosed: 2023</span>
+</div>
+</div>
+<!-- Allergy Alert Card -->
+<div class="bg-rose-50/70 rounded-lg p-3.5 border border-rose-200 space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-bold text-rose-900 text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-rose-600 !text-base">warning</span>
+                  Known Drug Allergy: Penicillin Allergy
+                </span>
+<span class="bg-rose-100 text-rose-800 text-[11px] font-bold px-2 py-0.5 rounded-full border border-rose-300">Critical Alert</span>
+</div>
+<p class="text-xs text-rose-800 font-medium">Manifestation: Severe maculopapular rash upon administration.</p>
+<div class="text-[11px] text-rose-700 font-semibold pt-1">
+                ⚠️ Sulpha caution documented: Monitor closely when prescribing CTX or sulpha-containing formulations.
+              </div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= 3B. VISIT HISTORY TAB ================= -->
+<div class="tab-panel space-y-6 hidden" id="tab-panel-visits">
+<!-- Master Ledger Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+<div class="px-5 py-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-slate-50/50">
+<div>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-emerald-700">menu_book</span>
+                MoH 257 Encounter Ledger
+              </h3>
+<p class="text-xs text-slate-500">Chronological history of client clinical reviews and ART pharmacy refills</p>
+</div>
+<button class="inline-flex items-center text-xs font-semibold bg-emerald-700 text-white px-3 py-1.5 rounded-md hover:bg-emerald-800 transition" onclick="toggleModal('modal-record-visit', true)">
+<span class="material-symbols-outlined !text-base mr-1">add</span>
+              + New Clinical Encounter
+            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-3.5 py-3">Date</th>
+<th class="px-3.5 py-3">Type</th>
+<th class="px-3.5 py-3">Wt</th>
+<th class="px-3.5 py-3">BP</th>
+<th class="px-3.5 py-3">WHO</th>
+<th class="px-3.5 py-3">Adherence</th>
+<th class="px-3.5 py-3">Regimen</th>
+<th class="px-3.5 py-3">Days Disp</th>
+<th class="px-3.5 py-3">Next Appt</th>
+<th class="px-3.5 py-3">Clinician</th>
+<th class="px-3.5 py-3 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<!-- Row 1: 2026-03-10 -->
+<tr class="bg-emerald-50/30 hover:bg-emerald-50/60 transition-colors border-l-4 border-l-emerald-600">
+<td class="px-3.5 py-3.5 font-bold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-3.5 py-3.5 font-medium text-slate-900">Review (Failure Workup)</td>
+<td class="px-3.5 py-3.5">62 kg</td>
+<td class="px-3.5 py-3.5 font-mono">138/86</td>
+<td class="px-3.5 py-3.5 font-bold text-blue-700">Stage 2</td>
+<td class="px-3.5 py-3.5">
+<span class="bg-amber-100 text-amber-900 text-[10px] font-bold px-1.5 py-0.5 rounded border border-amber-200">82%</span>
+</td>
+<td class="px-3.5 py-3.5 font-bold text-slate-900 font-mono">AZT-3TC-LPVr</td>
+<td class="px-3.5 py-3.5 font-mono">60</td>
+<td class="px-3.5 py-3.5 font-bold text-slate-900 font-mono">2026-05-16</td>
+<td class="px-3.5 py-3.5">Dr. K. Njuguna</td>
+<td class="px-3.5 py-3.5 text-right">
+<button class="text-emerald-700 hover:text-emerald-900 font-bold underline flex items-center justify-end ml-auto" id="btn-toggle-visit" onclick="toggleVisitDetail()">
+<span class="">Collapse Note ▲</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: 2026-01-12 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-3.5 py-3 font-semibold font-mono">2026-01-12</td>
+<td class="px-3.5 py-3">Pharmacy Refill</td>
+<td class="px-3.5 py-3">63 kg</td>
+<td class="px-3.5 py-3 font-mono">130/80</td>
+<td class="px-3.5 py-3">Stage 1</td>
+<td class="px-3.5 py-3">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-1.5 py-0.5 rounded">&gt;95%</span>
+</td>
+<td class="px-3.5 py-3 font-mono">TLD</td>
+<td class="px-3.5 py-3 font-mono">60</td>
+<td class="px-3.5 py-3 font-mono">2026-03-10</td>
+<td class="px-3.5 py-3">M. Omondi</td>
+<td class="px-3.5 py-3 text-right">
+<button class="text-slate-500 hover:text-slate-800 font-medium" onclick="alert('Historical refill encounter archived: 60 tabs TLD dispensed.')">Expand Note ▼</button>
+</td>
+</tr>
+<!-- Row 3: 2025-10-15 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-3.5 py-3 font-semibold font-mono">2025-10-15</td>
+<td class="px-3.5 py-3">Clinical Review</td>
+<td class="px-3.5 py-3">64 kg</td>
+<td class="px-3.5 py-3 font-mono">134/82</td>
+<td class="px-3.5 py-3">Stage 1</td>
+<td class="px-3.5 py-3">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-1.5 py-0.5 rounded">&gt;95%</span>
+</td>
+<td class="px-3.5 py-3 font-mono">TLD</td>
+<td class="px-3.5 py-3 font-mono">90</td>
+<td class="px-3.5 py-3 font-mono">2026-01-12</td>
+<td class="px-3.5 py-3">Dr. K. Njuguna</td>
+<td class="px-3.5 py-3 text-right">
+<button class="text-slate-500 hover:text-slate-800 font-medium" onclick="alert('Historical review encounter archived: Client stable on TLD.')">Expand Note ▼</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Fully Expanded Visit Note for 2026-03-10 -->
+<div class="bg-white border-2 border-emerald-600/60 rounded-xl p-6 shadow-sm space-y-6" id="expanded-visit-card">
+<div class="flex flex-wrap items-center justify-between pb-4 border-b border-slate-200 gap-2">
+<div>
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-full bg-emerald-600 animate-pulse"></span>
+<h4 class="text-base font-bold text-slate-900">Expanded Clinical Encounter Note — 2026-03-10</h4>
+</div>
+<p class="text-xs text-slate-500 mt-0.5">Full MoH 257 Comprehensive Assessment by <strong>Dr. K. Njuguna</strong> (Attending Clinician)</p>
+</div>
+<span class="bg-blue-50 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full border border-blue-200">
+              High VL &amp; Regimen Failure Workup
+            </span>
+</div>
+<!-- Structured Clinical Breakdown -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+<!-- Section 1: Complaints & Clinical History -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">chat</span>
+                Section 1: Complaints &amp; Clinical History
+              </h5>
+<p class="text-slate-700 leading-relaxed">
+                Occasional fatigue and mild morning nausea on previous regimen. Notes periodic adherence challenges over past quarter related to long haul interstate driving.
+              </p>
+</div>
+<!-- Section 2: TB Screening & Nutrition Status -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">vital_signs</span>
+                Section 2: TB Screening &amp; Nutrition Status
+              </h5>
+<div class="text-slate-700 space-y-1.5">
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-block px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Presumptive TB Negative</span>
+<span class="text-slate-600 text-[11px]">Cough: No, Night Sweats: No, Weight Loss: No, Fever: No.</span>
+</div>
+<p class="text-[11px]">BMI: <strong>21.4 kg/m² (Normal)</strong> | MUAC: <strong>28 cm</strong> | Nutrition Status: Adequate</p>
+</div>
+</div>
+<!-- Section 3: Physical Examination -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">stethoscope</span>
+                Section 3: Physical Examination
+              </h5>
+<div class="grid grid-cols-2 gap-2 text-slate-700">
+<div class="">• Pallor: <span class="font-semibold text-slate-900">None</span></div>
+<div class="">• Jaundice: <span class="font-semibold text-slate-900">None</span></div>
+<div class="">• Oedema: <span class="font-semibold text-slate-900">None</span></div>
+<div class="">• Oral Thrush: <span class="font-semibold text-slate-900">None</span></div>
+<div class="">• Lymphadenopathy: <span class="font-semibold text-slate-900">None</span></div>
+<div class="">• Skin Lesions: <span class="font-semibold text-slate-900">None</span></div>
+</div>
+<p class="text-[11px] text-slate-600 pt-1 border-t border-slate-200/80">Systemic: Chest: Clear vesicular, Abdomen: Soft non-tender.</p>
+</div>
+<!-- Section 4: Investigations Table -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-2">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">lab_research</span>
+                Section 4: Investigations Table
+              </h5>
+<div class="overflow-x-auto bg-white rounded border border-slate-200">
+<table class="w-full text-[11px] text-left">
+<thead class="bg-slate-100 text-slate-600 font-semibold border-b border-slate-200">
+<tr>
+<th class="px-2.5 py-1.5">Investigation</th>
+<th class="px-2.5 py-1.5">Result</th>
+<th class="px-2.5 py-1.5">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<tr>
+<td class="px-2.5 py-1 font-semibold">HIV-1 RNA Viral Load</td>
+<td class="px-2.5 py-1 font-mono font-bold text-rose-600">2,400 c/mL</td>
+<td class="px-2.5 py-1 text-rose-700 font-semibold">High VL (Failure)</td>
+</tr>
+<tr>
+<td class="px-2.5 py-1 font-semibold">CD4 Count</td>
+<td class="px-2.5 py-1 font-mono">385 cells/uL</td>
+<td class="px-2.5 py-1 text-slate-600">Immune monitoring</td>
+</tr>
+<tr>
+<td class="px-2.5 py-1 font-semibold">Renal Profile (Cr / eGFR)</td>
+<td class="px-2.5 py-1 font-mono">Cr: 88 umol/L</td>
+<td class="px-2.5 py-1 text-emerald-700 font-medium">eGFR Normal</td>
+</tr>
+<tr>
+<td class="px-2.5 py-1 font-semibold">ALT (Liver Transaminase)</td>
+<td class="px-2.5 py-1 font-mono">24 U/L</td>
+<td class="px-2.5 py-1 text-emerald-700 font-medium">Normal</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Section 5: Chronic Illnesses & Non-ART Treatment -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">pill</span>
+                Section 5: Chronic Illnesses &amp; Non-ART Treatment
+              </h5>
+<div class="text-slate-700 space-y-1">
+<p class="">• Condition: <strong class="text-slate-900">Hypertension Stage 1</strong></p>
+<p class="">• Current Treatment: <strong class="text-slate-900">Amlodipine 5mg OD</strong> (BP controlled at 138/86).</p>
+<p class="text-rose-700 font-semibold text-[11px]">• Drug Alert: Penicillin allergy noted; Sulpha caution maintained.</p>
+</div>
+</div>
+<!-- Section 6: HIV Treatment & CTX Prophylaxis -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">vaccines</span>
+                Section 6: HIV Treatment &amp; CTX Prophylaxis
+              </h5>
+<div class="text-slate-700 space-y-1">
+<p class="">• Regimen: <strong class="text-blue-800 font-mono">AZT-3TC-LPVr (300/150mg + 200/50mg)</strong> 1 tab BD x 60 days.</p>
+<p class="">• CTX Prophylaxis: <strong class="text-slate-900">Dapsone 100mg OD alternative</strong> (prescribed per penicillin/sulpha allergy alert protocol).</p>
+</div>
+</div>
+<!-- Section 7: Adverse Events & Drug Reactions -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">report_problem</span>
+                Section 7: Adverse Events &amp; Drug Reactions
+              </h5>
+<p class="text-slate-700">
+                Mild GI nausea resolving. Advised to take LPV/r with evening meal. No grade 3/4 toxicity documented.
+              </p>
+</div>
+<!-- Section 8: Adherence Assessment & EAC Initiation -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">psychology</span>
+                Section 8: Adherence Assessment &amp; EAC Initiation
+              </h5>
+<p class="text-slate-700 leading-relaxed">
+                Adherence: <strong class="text-amber-800 font-bold">82%</strong>. Barrier: Irregular dose timing during long transit routes. Enhanced Adherence Counselling (EAC Session 1 of 3) completed. Phone alarm strategy agreed.
+              </p>
+</div>
+<!-- Section 9: Next Appointment, Referrals & Attending Clinician -->
+<div class="bg-slate-50/70 p-4 rounded-lg border border-slate-200 space-y-1.5 md:col-span-2">
+<h5 class="font-bold text-slate-800 uppercase tracking-wide text-[11px] flex items-center">
+<span class="material-symbols-outlined !text-sm text-slate-500 mr-1.5">event_available</span>
+                Section 9: Next Appointment, Referrals &amp; Attending Clinician
+              </h5>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-slate-700">
+<div class="">Next Appt: <strong class="text-slate-900 font-mono">2026-05-16</strong> (Clinical follow-up + EAC Session 2)</div>
+<div class="">Referred for: <strong class="text-slate-900">Nutrition counseling &amp; Adherence peer educator</strong></div>
+<div class="flex items-center space-x-1.5">
+<span class="">Attending: <strong>Dr. K. Njuguna</strong></span>
+<span class="text-[10px] text-emerald-800 font-mono bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">Signed &amp; Verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Conditional Female Reproductive Health Block Notice -->
+<div class="bg-slate-50 border border-dashed border-slate-300 rounded-lg p-3 text-slate-600 text-xs flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-slate-400 !text-base">info</span>
+<span class="">Conditional Female Reproductive Health Block: Suppressed for male client (Joshua Mwangi, Sex: Male).</span>
+</div>
+<button class="text-[11px] text-blue-700 hover:text-blue-900 font-semibold underline" onclick="alert('Female Parameters Preview: LMP, Gravida, Parity, ANC/PNC status, Family Planning method, CaCx cervical screening (Active when sex is female).')">
+              [Click to preview female parameters: LMP, Gravida, Parity, ANC/PNC status, Family Planning method, CaCx cervical screening]
+            </button>
+</div>
+</div>
+</div>
+<!-- ================= 3C. LAB ORDERS & RESULTS TAB ================= -->
+<div class="tab-panel space-y-6 hidden" id="tab-panel-labs">
+<!-- Privacy Protocol Banner -->
+<div class="bg-sky-50 border border-sky-200 rounded-xl p-4 flex items-start space-x-3 text-xs text-sky-900">
+<span class="material-symbols-outlined text-sky-700 shrink-0 mt-0.5">verified_user</span>
+<div>
+<span class="font-bold">🔒 Anonymization Notice:</span>
+<span class="">Orders to Main Facility Laboratory are anonymized to CC No plus minimal required clinical indications to protect client confidentiality.</span>
+</div>
+</div>
+<!-- Laboratory Requisitions Table Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-600">biotech</span>
+                Lab Orders &amp; Verified Results
+              </h3>
+<p class="text-xs text-slate-500">Diagnostic requisitions with department routing &amp; completion status</p>
+</div>
+<button class="inline-flex items-center text-xs font-semibold bg-emerald-700 text-white px-3 py-1.5 rounded-md hover:bg-emerald-800 transition" onclick="toggleModal('modal-order-lab', true)"><span class="material-symbols-outlined !text-base mr-1">add</span><span class="">+ Order Lab Tests (Single or Multi-panel)</span></button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-4 py-3">Date</th>
+<th class="px-4 py-3">Test Name</th>
+<th class="px-4 py-3">Routed To</th>
+<th class="px-4 py-3">Status</th>
+<th class="px-4 py-3">Result</th>
+<th class="px-4 py-3">Result Date</th>
+<th class="px-4 py-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 font-medium text-slate-900">HIV-1 RNA Viral Load</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center text-emerald-800 font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>
+                      CCC Laboratory
+                    </span>
+</td>
+<td class="px-4 py-3">
+<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">Completed</span>
+</td>
+<td class="px-4 py-3 font-mono font-bold text-rose-600">2,400 c/mL (High VL)</td>
+<td class="px-4 py-3 font-mono text-slate-600">2026-03-10</td>
+<td class="px-4 py-3 text-right">
+<button class="text-emerald-700 hover:text-emerald-900 font-semibold" onclick="alert('Viewing Verified HIV-1 RNA Viral Load PDF Report: 2,400 c/mL.')">View Report</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 font-medium text-slate-900">Serum Creatinine &amp; eGFR</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center text-blue-700 font-medium">
+<span class="w-2 h-2 rounded-full bg-blue-500 mr-1.5"></span>
+                      Main Facility Lab (Anonymized #CCC-1004)
+                    </span>
+</td>
+<td class="px-4 py-3">
+<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">Completed</span>
+</td>
+<td class="px-4 py-3 font-mono text-slate-800 font-semibold">88 umol/L (Normal)</td>
+<td class="px-4 py-3 font-mono text-slate-600">2026-03-10</td>
+<td class="px-4 py-3 text-right">
+<button class="text-emerald-700 hover:text-emerald-900 font-semibold" onclick="alert('Viewing Verified Serum Creatinine &amp; eGFR PDF Report: 88 umol/L.')">View Report</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 font-medium text-slate-900">CD4 Absolute Count</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center text-emerald-800 font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>
+                      CCC Laboratory
+                    </span>
+</td>
+<td class="px-4 py-3">
+<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">Completed</span>
+</td>
+<td class="px-4 py-3 font-mono text-slate-800 font-semibold">385 cells/uL</td>
+<td class="px-4 py-3 font-mono text-slate-600">2026-03-10</td>
+<td class="px-4 py-3 text-right">
+<button class="text-emerald-700 hover:text-emerald-900 font-semibold" onclick="alert('Viewing Verified CD4 Absolute Count PDF Report: 385 cells/uL.')">View Report</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- ================= 3D. RADIOLOGY TAB ================= -->
+<div class="tab-panel space-y-6 hidden" id="tab-panel-rad">
+<!-- Privacy Protocol Banner -->
+<div class="bg-sky-50 border border-sky-200 rounded-xl p-4 flex items-start space-x-3 text-xs text-sky-900">
+<span class="material-symbols-outlined text-sky-700 shrink-0 mt-0.5">verified_user</span>
+<div>
+<span class="font-bold">🔒 Privacy Notice:</span>
+<span class="">Main Radiology orders carry only CC No and clinical justification; no HIV status or ART regimen is disclosed.</span>
+</div>
+</div>
+<!-- Imaging Orders Table Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-600">radiology</span>
+                Imaging Orders &amp; Reports
+              </h3>
+<p class="text-xs text-slate-500">Diagnostic radiological imaging logs</p>
+</div>
+<button class="inline-flex items-center text-xs font-semibold bg-emerald-700 text-white px-3 py-1.5 rounded-md hover:bg-emerald-800 transition" onclick="toggleModal('modal-order-rad', true)"><span class="material-symbols-outlined !text-base mr-1">add</span><span class="">+ Order Radiology (Single or Multiple Exams)</span></button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-4 py-3">Date</th>
+<th class="px-4 py-3">Study</th>
+<th class="px-4 py-3">Routing</th>
+<th class="px-4 py-3">Indication</th>
+<th class="px-4 py-3">Status</th>
+<th class="px-4 py-3">Report Date</th>
+<th class="px-4 py-3">Findings</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2025-06-14</td>
+<td class="px-4 py-3 font-bold text-slate-900">Chest X-Ray (PA View)</td>
+<td class="px-4 py-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-medium">Main Facility Radiology (Anonymized)</span>
+</td>
+<td class="px-4 py-3 text-slate-600">Rule out pulmonary TB / chronic cough workup</td>
+<td class="px-4 py-3">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Completed</span>
+</td>
+<td class="px-4 py-3 font-mono text-slate-600">2025-06-14</td>
+<td class="px-4 py-3 text-slate-800 font-medium">Normal lung fields, no infiltrates or cavitations.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- ================= 3E. MEDICATIONS TAB ================= -->
+<div class="tab-panel space-y-6 hidden" id="tab-panel-meds">
+<!-- Privacy Protocol Banner -->
+<div class="bg-sky-50 border border-sky-200 rounded-xl p-4 flex items-start space-x-3 text-xs text-sky-900">
+<span class="material-symbols-outlined text-sky-700 shrink-0 mt-0.5">verified_user</span>
+<div>
+<span class="font-bold">🔒 Pharmacy Privacy Notice:</span>
+<span class="">Main Pharmacy receives client's first name and CC No for safe handoff, but diagnosis and full ART history remain confidential.</span>
+</div>
+</div>
+<!-- Dispensing History Table Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-600">medication</span>
+                Dispensing History &amp; Active Medications
+              </h3>
+<p class="text-xs text-slate-500">History of drugs dispensed, routing department, and duration</p>
+</div>
+<button class="inline-flex items-center text-xs font-semibold bg-emerald-700 text-white px-3 py-1.5 rounded-md hover:bg-emerald-800 transition" onclick="toggleModal('modal-issue-med', true)"><span class="material-symbols-outlined !text-base mr-1">add</span>+ Issue / Prescribe Drugs (Single or Multi-item)</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-4 py-3">Date</th>
+<th class="px-4 py-3">Medication / Regimen</th>
+<th class="px-4 py-3">Dose &amp; Frequency</th>
+<th class="px-4 py-3">Days Disp</th>
+<th class="px-4 py-3">Routed To</th>
+<th class="px-4 py-3">Dispensed By</th>
+<th class="px-4 py-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 font-bold text-slate-900">AZT-3TC-LPVr (2nd Line ART)</td>
+<td class="px-4 py-3">1 tab BD</td>
+<td class="px-4 py-3 font-mono">60 days</td>
+<td class="px-4 py-3 font-semibold text-emerald-700">CCC Pharmacy</td>
+<td class="px-4 py-3 text-slate-600">Pharm. Grace W.</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Dispensed</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 font-bold text-slate-900">Dapsone</td>
+<td class="px-4 py-3">100mg OD</td>
+<td class="px-4 py-3 font-mono">60 days</td>
+<td class="px-4 py-3 font-semibold text-emerald-700">CCC Pharmacy</td>
+<td class="px-4 py-3 text-slate-600">Pharm. Grace W.</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Dispensed</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-03-10</td>
+<td class="px-4 py-3 font-bold text-slate-900">Amlodipine</td>
+<td class="px-4 py-3">5mg OD</td>
+<td class="px-4 py-3 font-mono">60 days</td>
+<td class="px-4 py-3 font-semibold text-blue-700">Main Facility Pharmacy</td>
+<td class="px-4 py-3 text-slate-600">Pharm. P. Kiprono</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Dispensed</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-semibold text-slate-900 font-mono">2026-01-12</td>
+<td class="px-4 py-3 font-medium text-slate-700">TLD (Tenofovir/Lamivudine/Dolutegravir)</td>
+<td class="px-4 py-3">1 tab OD</td>
+<td class="px-4 py-3 font-mono">60 days</td>
+<td class="px-4 py-3 font-semibold text-emerald-700">CCC Pharmacy</td>
+<td class="px-4 py-3 text-slate-600">Pharm. Grace W.</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full">Dispensed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- ================= 3F. IMMUNIZATIONS TAB ================= -->
+<div class="tab-panel space-y-6 hidden" id="tab-panel-immunizations">
+<!-- Paediatric Schedule Prominent Banner -->
+<div class="bg-amber-50 border border-amber-300 rounded-xl p-4 flex items-start space-x-3 text-xs text-amber-900">
+<span class="material-symbols-outlined text-amber-700 shrink-0 mt-0.5">info</span>
+<div>
+<span class="font-bold">Paediatric Schedule Note:</span>
+<span class="">Client is 34 years old (Adult Schedule). Paediatric immunization schedule displayed for record reference or adolescent/child transfers.</span>
+</div>
+</div>
+<!-- Antigen Checklist Table Card -->
+<div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs">
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-slate-600">vaccines</span>
+                Kenya National Expanded Programme on Immunization (KEPI)
+              </h3>
+<p class="text-xs text-slate-500">Paediatric immunization register schedule reference</p>
+</div>
+<span class="text-xs bg-slate-100 text-slate-700 font-semibold px-2.5 py-1 rounded">Archived Baseline Record</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead class="bg-slate-50 text-slate-500 uppercase font-semibold border-b border-slate-200">
+<tr>
+<th class="px-4 py-3">Antigen</th>
+<th class="px-4 py-3">Due Age</th>
+<th class="px-4 py-3">Dose 1</th>
+<th class="px-4 py-3">Dose 2</th>
+<th class="px-4 py-3">Dose 3</th>
+<th class="px-4 py-3">Booster</th>
+<th class="px-4 py-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700">
+<!-- BCG -->
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-bold text-slate-900">BCG</td>
+<td class="px-4 py-3 font-semibold text-slate-600">At Birth</td>
+<td class="px-4 py-3 font-mono text-emerald-800 font-semibold">Given (1992-02-20)</td>
+<td class="px-4 py-3 text-slate-400">—</td>
+<td class="px-4 py-3 text-slate-400">—</td>
+<td class="px-4 py-3 text-slate-400">—</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Completed</span>
+</td>
+</tr>
+<!-- OPV / bOPV -->
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-bold text-slate-900">OPV / bOPV</td>
+<td class="px-4 py-3 font-semibold text-slate-600">Birth, 6w, 10w, 14w</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Completed</span>
+</td>
+</tr>
+<!-- Pentavalent -->
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-bold text-slate-900">Pentavalent (DPT-HepB-Hib)</td>
+<td class="px-4 py-3 font-semibold text-slate-600">6w, 10w, 14w</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-slate-400">—</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Completed</span>
+</td>
+</tr>
+<!-- PCV -->
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-bold text-slate-900">PCV (Pneumococcal)</td>
+<td class="px-4 py-3 font-semibold text-slate-600">6w, 10w, 14w</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-slate-400">—</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Completed</span>
+</td>
+</tr>
+<!-- Measles-Rubella (MR) -->
+<tr class="hover:bg-slate-50 transition">
+<td class="px-4 py-3 font-bold text-slate-900">Measles-Rubella (MR)</td>
+<td class="px-4 py-3 font-semibold text-slate-600">9m, 18m</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-emerald-800 font-medium">Given</td>
+<td class="px-4 py-3 text-slate-400">—</td>
+<td class="px-4 py-3 text-slate-400">—</td>
+<td class="px-4 py-3 text-right">
+<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Completed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- ================= 4. "RECORD VISIT" MODAL (MOH 257 CLINICAL ENCOUNTER FORM) ================= -->
+<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 hidden" id="modal-record-visit">
+<div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+<!-- Modal Header -->
+<div class="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between shrink-0">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-emerald-700">assignment</span>
+</div>
+<div>
+<h3 class="text-base font-bold text-slate-900">Record Clinical Encounter (MOH 257 Clinical Review)</h3>
+<p class="text-xs text-slate-600">Joshua Mwangi • CCC No: <strong class="font-mono text-slate-800">CCC-1004</strong> (Male, 34y)</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-200 transition" onclick="toggleModal('modal-record-visit', false)">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Body (11 Structured Sections) -->
+<div class="p-6 overflow-y-auto custom-scrollbar space-y-6 flex-1 text-xs">
+<!-- Section 1: Visit Info & Vitals -->
+<div class="bg-slate-50/80 p-4 rounded-xl border border-slate-200 space-y-3">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+              Section 1: Visit Info &amp; Vitals
+            </h4>
+<span class="text-[11px] text-slate-400 font-mono">MOH 257 Standard</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+<div>
+<label class="block text-slate-600 font-medium mb-1">Visit Date</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600" type="date" value="2026-03-10">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Visit Type</label>
+<select class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600">
+<option selected="">Clinical Review</option>
+<option>Pharmacy Refill</option>
+<option>Treatment Failure Review</option>
+<option>Unscheduled / Acute</option>
+</select>
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Weight (kg)</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600" step="0.1" type="number" value="62.0">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Height (cm)</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600" type="number" value="170">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">BP (mmHg)</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600 font-mono" type="text" value="138/86">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Temp (°C)</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600" step="0.1" type="number" value="36.8">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Pulse (bpm)</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600" type="number" value="78">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">SpO2 (%)</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600" type="number" value="98">
+</div>
+</div>
+</div>
+<!-- Section 2: Complaints & Clinical History -->
+<div class="space-y-1.5 bg-white p-4 rounded-xl border border-slate-200">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+            Section 2: Complaints &amp; Clinical History
+          </h4>
+<textarea class="w-full text-xs rounded-lg border-slate-300 shadow-2xs focus:border-emerald-600 focus:ring-emerald-600" placeholder="Document complaints, symptom duration, GI tolerance, travel history..." rows="2">Occasional fatigue and mild morning nausea on previous regimen. Notes periodic adherence challenges over past quarter related to long haul interstate driving.</textarea>
+</div>
+<!-- Section 3: TB Screening & Nutrition Status -->
+<div class="bg-slate-50/80 p-4 rounded-xl border border-slate-200 space-y-3">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+              Section 3: TB Screening &amp; Nutrition Status
+            </h4>
+<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold text-[10px]">Presumptive TB Negative</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-slate-700 bg-white p-3 rounded-lg border border-slate-200">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Cough</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Night Sweats</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Weight Loss</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Fever</span>
+</label>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<div>
+<label class="block text-slate-600 font-medium mb-1">BMI (kg/m²)</label>
+<input class="w-full text-xs rounded-md border-slate-300 bg-slate-100 text-slate-800 font-bold" readonly="" type="text" value="21.4 (Normal)">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">MUAC (cm)</label>
+<input class="w-full text-xs rounded-md border-slate-300" type="number" value="28">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Nutrition Support Indicated</label>
+<select class="w-full text-xs rounded-md border-slate-300">
+<option selected="">None required</option>
+<option>Nutrition Counseling only</option>
+<option>Therapeutic Food Supplement</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section 4: Physical Examination -->
+<div class="space-y-2 bg-white p-4 rounded-xl border border-slate-200">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+            Section 4: Physical Examination (Head/Neck, Chest, Abdomen, CNS, Extremities)
+          </h4>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 bg-slate-50/60 p-3 rounded-lg border border-slate-200">
+<label class="flex items-center space-x-2">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Pallor</span>
+</label>
+<label class="flex items-center space-x-2">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Jaundice</span>
+</label>
+<label class="flex items-center space-x-2">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Oedema</span>
+</label>
+<label class="flex items-center space-x-2">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Oral Thrush</span>
+</label>
+<label class="flex items-center space-x-2">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Lymphadenopathy</span>
+</label>
+<label class="flex items-center space-x-2">
+<input class="rounded border-slate-300 text-emerald-600 focus:ring-emerald-600" type="checkbox">
+<span class="">Skin Lesions</span>
+</label>
+</div>
+<input class="w-full text-xs rounded-md border-slate-300 mt-2" placeholder="Systemic examination findings..." type="text" value="Chest clear vesicular, abdomen soft non-tender, CNS alert &amp; oriented.">
+</div>
+<!-- Section 5: Investigations & Lab Orders -->
+<div class="bg-slate-50/80 p-4 rounded-xl border border-slate-200 space-y-3">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+              Section 5: Investigations &amp; Lab Orders
+            </h4>
+<button class="inline-flex items-center px-2.5 py-1 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-[11px] font-semibold" onclick="toggleModal('modal-order-lab', true)" type="button">
+              + Order Lab
+            </button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<div>
+<label class="block text-slate-600 font-medium mb-1">HIV-1 RNA Viral Load</label>
+<input class="w-full text-xs rounded border-slate-300 font-mono font-bold text-rose-600" type="text" value="2,400 c/mL (Repeat VL ordered)">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">CD4 Count</label>
+<input class="w-full text-xs rounded border-slate-300 font-mono" type="text" value="385 cells/uL">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Renal Profile (Cr / eGFR)</label>
+<input class="w-full text-xs rounded border-slate-300" type="text" value="Cr: 88 umol/L (eGFR Normal)">
+</div>
+</div>
+</div>
+<!-- Section 6: Chronic Illnesses & Treatment -->
+<div class="bg-white p-4 rounded-xl border border-slate-200 space-y-3">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+              Section 6: Chronic Illnesses &amp; Treatment
+            </h4>
+<button class="inline-flex items-center text-[11px] font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-2 py-0.5 rounded transition" onclick="addConditionRow()" type="button">
+              + Add Condition
+            </button>
+</div>
+<div class="space-y-2.5" id="dynamic-conditions-container">
+<!-- Prefilled Condition 1: Hypertension -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200 text-xs">
+<div class="sm:col-span-4">
+<input class="w-full text-xs rounded border-slate-300 font-medium" placeholder="Condition name" type="text" value="Hypertension (Stage 1)">
+</div>
+<div class="sm:col-span-5">
+<input class="w-full text-xs rounded border-slate-300" placeholder="Current management / dosage" type="text" value="Amlodipine 5mg OD">
+</div>
+<div class="sm:col-span-2">
+<select class="w-full text-xs rounded border-slate-300">
+<option selected="">Active / Controlled</option>
+<option>Uncontrolled</option>
+<option>In Remission</option>
+</select>
+</div>
+<div class="sm:col-span-1 text-right">
+<button class="text-slate-400 hover:text-rose-600 p-1" onclick="this.closest('.grid').remove()" type="button">✕</button>
+</div>
+</div>
+</div>
+<div class="pt-2 border-t border-slate-100">
+<label class="block text-slate-700 font-semibold mb-1">Known Drug Allergies Alert</label>
+<input class="w-full text-xs rounded-md border-rose-300 bg-rose-50/50 font-bold text-rose-800" type="text" value="Penicillin Allergy (Severe maculopapular rash); Sulpha caution documented.">
+</div>
+</div>
+<!-- Section 7: HIV Treatment & Prophylaxis -->
+<div class="bg-slate-50/80 p-4 rounded-xl border border-slate-200 space-y-3">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+            Section 7: HIV Treatment &amp; Prophylaxis Selection
+          </h4>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<div>
+<label class="block text-slate-600 font-medium mb-1">Prescribed ART Regimen</label>
+<select class="w-full text-xs rounded-md border-slate-300 shadow-2xs font-semibold">
+<option>TLD (TDF-3TC-DTG) - 1st Line</option>
+<option selected="">AZT-3TC-LPVr - 2nd Line (Current)</option>
+<option>TDF-3TC-ATVr - 2nd Line</option>
+<option>Third Line Specialist Protocol</option>
+</select>
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Regimen Line</label>
+<input class="w-full text-xs rounded-md border-slate-300 bg-slate-100 font-bold text-slate-800" readonly="" type="text" value="Second-Line Regimen">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">CTX Prophylaxis / Alternative</label>
+<select class="w-full text-xs rounded-md border-slate-300 shadow-2xs">
+<option selected="">Dapsone 100mg OD (Penicillin/Sulpha Alert Alternative)</option>
+<option>CTX 960mg OD</option>
+<option>Fluconazole 200mg (Pre-emptive)</option>
+<option>None Indicated</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section 8: Adverse Drug Reactions & Toxicity Grading -->
+<div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+            Section 8: Adverse Drug Reactions &amp; Toxicity Grading
+          </h4>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div>
+<label class="block text-slate-600 font-medium mb-1">Toxicity Grade</label>
+<select class="w-full text-xs rounded-md border-slate-300">
+<option selected="">Mild GI nausea resolving (Grade 1)</option>
+<option>No toxicity reported (Grade 0)</option>
+<option>Moderate reaction (Grade 2)</option>
+<option>Severe reaction (Grade 3/4)</option>
+</select>
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Clinical Action Taken</label>
+<input class="w-full text-xs rounded-md border-slate-300" placeholder="e.g. Dose taken with evening meals..." type="text" value="Counseled to take LPV/r with evening meal to mitigate mild GI symptoms.">
+</div>
+</div>
+</div>
+<!-- Section 9: Female-Only Block (Conditional / Suppressed) -->
+<div class="bg-slate-100/80 p-4 rounded-xl border border-dashed border-slate-300 space-y-2">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-slate-600 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-slate-400 mr-2"></span>
+              Section 9: Female-Only Reproductive Health Block
+            </h4>
+<span class="text-[10px] bg-white border border-slate-300 px-2 py-0.5 rounded font-mono text-slate-600 font-semibold">Client Sex: Male (Suppressed)</span>
+</div>
+<p class="text-[11px] text-slate-500">
+            LMP, Gravida, Parity, ANC/PNC status, Family Planning method, and Cervical cancer screening (CaCx) are suppressed for client Joshua Mwangi.
+          </p>
+</div>
+<!-- Section 10: Positive Health Dignity & Prevention (PHDP) & Adherence Assessment -->
+<div class="bg-slate-50/80 p-4 rounded-xl border border-slate-200 space-y-3">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+            Section 10: PHDP &amp; Adherence Assessment
+          </h4>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<div>
+<label class="block text-slate-600 font-medium mb-1">Adherence Pill Count (%)</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs font-bold text-amber-800" type="number" value="82">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Barrier Check</label>
+<input class="w-full text-xs rounded-md border-slate-300 shadow-2xs" type="text" value="Irregular dose timing during transit routes">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">EAC Session Completed</label>
+<select class="w-full text-xs rounded-md border-slate-300 shadow-2xs">
+<option selected="">Session 1 Conducted (Root causes identified)</option>
+<option>Session 2 Conducted</option>
+<option>Session 3 Conducted</option>
+<option>Not Indicated</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section 11: Next Appointment, Referrals & Clinician Signature -->
+<div class="bg-white p-4 rounded-xl border border-slate-200 space-y-3">
+<h4 class="font-bold text-slate-900 uppercase tracking-wide text-[11px] flex items-center">
+<span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>
+            Section 11: Next Appointment, Referrals &amp; Clinician Signature
+          </h4>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<div>
+<label class="block text-slate-600 font-medium mb-1">Next Appointment Date</label>
+<input class="w-full text-xs rounded-md border-slate-300 font-bold text-slate-900" type="date" value="2026-05-16">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Referral Routing</label>
+<input class="w-full text-xs rounded-md border-slate-300" type="text" value="Nutrition counseling &amp; Adherence peer educator">
+</div>
+<div>
+<label class="block text-slate-600 font-medium mb-1">Clinician Digital PIN / Signature</label>
+<input class="w-full text-xs rounded-md border-slate-300 bg-slate-100 font-semibold text-slate-800" readonly="" type="text" value="Dr. K. Njuguna (PIN: #KN-2024-CCC)">
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-6 py-3.5 border-t border-slate-200 bg-slate-50 flex items-center justify-between shrink-0">
+<button class="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold transition" onclick="toggleModal('modal-record-visit', false)">
+          Cancel
+        </button>
+<div class="flex items-center space-x-2">
+<button class="px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 font-semibold shadow-2xs transition" onclick="toggleModal('modal-record-visit', false)">
+            Save Draft
+          </button>
+<button class="px-5 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white font-semibold shadow-sm transition flex items-center space-x-1.5" onclick="saveEncounter()">
+<span class="material-symbols-outlined !text-base">check_circle</span>
+<span class="">Save &amp; Complete Encounter</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= MODAL: ORDER LAB ================= -->
+<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden" id="modal-order-lab">
+<div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150"><div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0"><div class="flex items-center space-x-3"><div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold"><span class="material-symbols-outlined text-emerald-700">science</span></div><div><h3 class="font-bold text-sm text-slate-900">Order Diagnostic Laboratory Tests (One or Multiple Tests)</h3><p class="text-xs text-slate-500">Client: Joshua Mwangi • CCC No: <strong class="font-mono text-slate-800">CCC-1004</strong> (Confidential Anonymized Routing)</p></div></div><button class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-200 transition" onclick="toggleModal('modal-order-lab', false)">✕</button></div><div class="p-6 space-y-4 overflow-y-auto custom-scrollbar flex-1 text-xs"><div class="bg-sky-50 border border-sky-200 rounded-lg p-3 text-[11px] text-sky-900 flex items-start space-x-2"><span class="material-symbols-outlined text-sky-700 !text-base shrink-0">verified_user</span><div class=""><strong>🔒 Privacy Protocol:</strong> Requisitions to Main Facility Laboratory are anonymized to CCC No plus minimal necessary clinical justifications to protect client confidentiality.</div></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50/70 p-3 rounded-lg border border-slate-200"><div><label class="block font-semibold text-slate-700 mb-1">Requisition Priority</label><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">Routine Follow-up</option><option>Urgent / Clinical Review</option><option>STAT / Immediate Workup</option></select></div><div><label class="block font-semibold text-slate-700 mb-1">Fast-Track Preset Panels</label><select class="w-full text-xs rounded border-slate-300 font-medium" onchange="alert('Preset laboratory panel selected: Quick-populates recommended tests.')"><option selected="">Custom Individual Selection</option><option>Viral Load Failure Workup Panel (VL + CD4 + Cr)</option><option>Baseline ART Initiation Panel (VL, CD4, Cr, ALT, CBC)</option><option>Annual Organ Function Surveillance</option></select></div><div><label class="block font-semibold text-slate-700 mb-1">Sample Collection Mode</label><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">CCC Phlebotomy (Today)</option><option>Main Lab Phlebotomy Service</option><option>External Referral Hub</option></select></div></div><div class="space-y-3"><div class="flex items-center justify-between pb-1"><div class="flex items-center space-x-2"><h4 class="font-bold text-slate-900 uppercase tracking-wide text-xs flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>Lab Test Requisition Basket</h4><span class="bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[11px]" id="lab-basket-count">2 tests queued</span></div><button class="inline-flex items-center text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition" onclick="const c=document.getElementById('multi-lab-table-body'); const tr=document.createElement('tr'); tr.className='hover:bg-slate-50 transition border-b border-slate-100'; tr.innerHTML='&lt;td class=\'px-3 py-2.5\' &gt;&lt;select class=\'w-full text-xs rounded border-slate-300 font-medium\' &gt;&lt;option&gt;HIV-1 RNA Viral Load&lt;/option&gt;&lt;option&gt;CD4 Absolute Count&lt;/option&gt;&lt;option selected&gt;Complete Blood Count (CBC)&lt;/option&gt;&lt;option&gt;Serum Creatinine &amp; eGFR&lt;/option&gt;&lt;option&gt;Liver Function Tests (ALT/AST)&lt;/option&gt;&lt;option&gt;Lipid Profile&lt;/option&gt;&lt;option&gt;Random Blood Sugar (RBS)&lt;/option&gt;&lt;option&gt;GeneXpert MTB/RIF (Sputum)&lt;/option&gt;&lt;option&gt;Urinalysis / Dipstick&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\' &gt;&lt;select class=\'w-full text-xs rounded border-slate-300\' &gt;&lt;option&gt;Whole Blood (EDTA)&lt;/option&gt;&lt;option&gt;Serum (Plain/SST)&lt;/option&gt;&lt;option selected&gt;Whole Blood (EDTA - Lavender)&lt;/option&gt;&lt;option&gt;Sputum&lt;/option&gt;&lt;option&gt;Urine&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\' &gt;&lt;select class=\'w-full text-xs rounded border-slate-300\' &gt;&lt;option&gt;CCC Laboratory&lt;/option&gt;&lt;option selected&gt;Main Facility Lab (Anonymized)&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\' &gt;&lt;select class=\'w-full text-xs rounded border-slate-300 font-medium\' &gt;&lt;option selected&gt;Routine&lt;/option&gt;&lt;option&gt;Urgent&lt;/option&gt;&lt;option&gt;STAT&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\' &gt;&lt;input class=\'w-full text-xs rounded border-slate-300\' placeholder=\'Indication / Clinical justification\' type=\'text\' value=\'Baseline organ and hematologic workup\' /&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5 text-right\' &gt;&lt;button type=\'button\' class=\'text-slate-400 hover:text-rose-600 p-1 font-bold text-sm\' onclick=\'this.closest(" tr").remove()\'="" &gt;✕&lt;="" button&gt;&lt;="" td&gt;';="" c.appendchild(tr);"="" type="button"><span class="material-symbols-outlined !text-sm mr-1">add_circle</span>+ Add Another Lab Test</button></div><div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs"><table class="w-full text-left text-xs"><thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 uppercase text-[11px]"><tr><th class="px-3 py-2.5 min-w-[200px]">Test Name / Panel</th><th class="px-3 py-2.5 min-w-[130px]">Specimen Type</th><th class="px-3 py-2.5 min-w-[150px]">Laboratory Routing</th><th class="px-3 py-2.5 min-w-[100px]">Priority</th><th class="px-3 py-2.5 min-w-[180px]">Clinical Indication / Reason</th><th class="px-3 py-2.5 text-right">Action</th></tr></thead><tbody class="divide-y divide-slate-100 text-slate-700" id="multi-lab-table-body"><tr class="hover:bg-slate-50 transition"><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300 font-semibold text-slate-900"><option selected="">HIV-1 RNA Viral Load (Follow-up / Failure)</option><option>CD4 Absolute Count</option><option>Serum Creatinine &amp; eGFR</option><option>Complete Blood Count (CBC)</option><option>Liver Function Tests (ALT/AST)</option><option>GeneXpert MTB/RIF</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option selected="">Plasma (EDTA - PPT)</option><option>Serum (SST)</option><option>Whole Blood</option><option>Sputum</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option selected="">CCC Laboratory (In-house)</option><option>Main Facility Lab (Anonymized)</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">Urgent</option><option>Routine</option><option>STAT</option></select></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="Post EAC Session 1 and 2nd line switch follow-up"></td><td class="px-3 py-2.5 text-right"><button class="text-slate-400 hover:text-rose-600 p-1 font-bold text-sm" onclick="this.closest('tr').remove()" type="button">✕</button></td></tr><tr class="hover:bg-slate-50 transition"><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300 font-semibold text-slate-900"><option>HIV-1 RNA Viral Load</option><option>CD4 Absolute Count</option><option selected="">Serum Creatinine &amp; eGFR (Renal Profile)</option><option>Complete Blood Count (CBC)</option><option>Liver Function Tests (ALT/AST)</option><option>GeneXpert MTB/RIF</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option>Plasma (EDTA)</option><option selected="">Serum (SST Gel Tube)</option><option>Whole Blood</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option>CCC Laboratory</option><option selected="">Main Facility Lab (Anonymized #CCC-1004)</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">Routine</option><option>Urgent</option><option>STAT</option></select></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="Renal clearance check on 2nd-line ART"></td><td class="px-3 py-2.5 text-right"><button class="text-slate-400 hover:text-rose-600 p-1 font-bold text-sm" onclick="this.closest('tr').remove()" type="button">✕</button></td></tr></tbody></table></div></div><div><label class="block font-medium text-slate-700 mb-1">General Phlebotomy / Laboratory Instructions</label><textarea class="w-full text-xs rounded border-slate-300" rows="2">Client fasting is not strictly required. Expedite plasma separation for viral load within 4 hours. Deliver results digitally to CCC Module.</textarea></div></div><div class="px-6 py-3.5 border-t border-slate-200 bg-slate-50 flex items-center justify-between shrink-0 text-xs"><button class="px-4 py-2 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 font-medium" onclick="toggleModal('modal-order-lab', false)">Cancel</button><div class="flex items-center space-x-2"><button class="px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 font-semibold shadow-2xs transition" onclick="alert('Lab order requisition draft saved.'); toggleModal('modal-order-lab', false)">Save Draft</button><button class="px-5 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold shadow-xs flex items-center space-x-1.5" onclick="alert('Multi-test laboratory orders submitted successfully and requisitions dispatched.'); toggleModal('modal-order-lab', false)"><span class="material-symbols-outlined !text-base">check_circle</span><span class="">Authorize &amp; Submit All Lab Orders</span></button></div></div></div>
+</div>
+<!-- ================= MODAL: ORDER RADIOLOGY ================= -->
+<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden" id="modal-order-rad">
+<div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150"><div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0"><div class="flex items-center space-x-3"><div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold"><span class="material-symbols-outlined text-emerald-700">radiology</span></div><div><h3 class="font-bold text-sm text-slate-900">Order Radiology &amp; Diagnostic Imaging (One or Multiple Exams)</h3><p class="text-xs text-slate-500">Client: Joshua Mwangi • CCC No: <strong class="font-mono text-slate-800">CCC-1004</strong> (Anonymized Diagnostic Order)</p></div></div><button class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-200 transition" onclick="toggleModal('modal-order-rad', false)">✕</button></div><div class="p-6 space-y-4 overflow-y-auto custom-scrollbar flex-1 text-xs"><div class="bg-sky-50 border border-sky-200 rounded-lg p-3 text-[11px] text-sky-900 flex items-start space-x-2"><span class="material-symbols-outlined text-sky-700 !text-base shrink-0">verified_user</span><div class=""><strong>🔒 Privacy Protocol:</strong> Main Facility Radiology orders carry only CC No and clinical justification; no HIV status, ART regimen, or viral load markers are disclosed.</div></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50/70 p-3 rounded-lg border border-slate-200"><div><label class="block font-semibold text-slate-700 mb-1">Imaging Urgency</label><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">Routine Outpatient</option><option>Priority / Semi-urgent (48h)</option><option>STAT / Immediate Emergency</option></select></div><div><label class="block font-semibold text-slate-700 mb-1">Patient Mobility / Transport</label><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">Ambulatory (Walk-in)</option><option>Wheelchair Required</option><option>Stretcher / Assisted</option></select></div><div><label class="block font-semibold text-slate-700 mb-1">Imaging Department Routing</label><input class="w-full text-xs rounded border-slate-200 bg-slate-100 text-slate-700 font-semibold" disabled="" type="text" value="Main Facility Radiology (Anonymized)"></div></div><div class="space-y-3"><div class="flex items-center justify-between pb-1"><div class="flex items-center space-x-2"><h4 class="font-bold text-slate-900 uppercase tracking-wide text-xs flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>Radiology Exam Basket</h4><span class="bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[11px]" id="rad-basket-count">1 exam queued</span></div><button class="inline-flex items-center text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition" onclick="const c=document.getElementById('multi-rad-table-body'); const tr=document.createElement('tr'); tr.className='hover:bg-slate-50 transition border-b border-slate-100'; tr.innerHTML='&lt;td class=\'px-3 py-2.5\' &gt;&lt;select class=\'w-full text-xs rounded border-slate-300 font-medium\' &gt;&lt;option&gt;Chest X-Ray (PA View)&lt;/option&gt;&lt;option selected&gt;Abdominal Ultrasound (Complete)&lt;/option&gt;&lt;option&gt;Pelvic Ultrasound&lt;/option&gt;&lt;option&gt;CT Chest (Non-contrast)&lt;/option&gt;&lt;option&gt;CT Abdomen/Pelvis&lt;/option&gt;&lt;option&gt;Echocardiography (Echo)&lt;/option&gt;&lt;option&gt;X-Ray Spine (Lumbosacral)&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\' &gt;&lt;select class=\'w-full text-xs rounded border-slate-300\' &gt;&lt;option&gt;X-Ray (General Radiography)&lt;/option&gt;&lt;option selected&gt;Ultrasound (Sonography)&lt;/option&gt;&lt;option&gt;Computed Tomography (CT)&lt;/option&gt;&lt;option&gt;Cardiology Imaging&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\' &gt;&lt;select class=\'w-full text-xs rounded border-slate-300 font-medium\' &gt;&lt;option selected&gt;Routine&lt;/option&gt;&lt;option&gt;Urgent&lt;/option&gt;&lt;option&gt;STAT&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\' &gt;&lt;input class=\'w-full text-xs rounded border-slate-300\' placeholder=\'Clinical reason / Area of concern\' type=\'text\' value=\'Abdominal review; evaluate for organomegaly\' /&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5 text-right\' &gt;&lt;button type=\'button\' class=\'text-slate-400 hover:text-rose-600 p-1 font-bold text-sm\' onclick=\'this.closest(" tr").remove()\'="" &gt;✕&lt;="" button&gt;&lt;="" td&gt;';="" c.appendchild(tr);"="" type="button"><span class="material-symbols-outlined !text-sm mr-1">add_circle</span>+ Add Another Radiology Exam</button></div><div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs"><table class="w-full text-left text-xs"><thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 uppercase text-[11px]"><tr><th class="px-3 py-2.5 min-w-[200px]">Study / Examination Requested</th><th class="px-3 py-2.5 min-w-[140px]">Modality</th><th class="px-3 py-2.5 min-w-[110px]">Urgency</th><th class="px-3 py-2.5 min-w-[220px]">Clinical Indication / Diagnostic Questions</th><th class="px-3 py-2.5 text-right">Action</th></tr></thead><tbody class="divide-y divide-slate-100 text-slate-700" id="multi-rad-table-body"><tr class="hover:bg-slate-50 transition"><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300 font-semibold text-slate-900"><option selected="">Chest X-Ray (PA View)</option><option>Abdominal Ultrasound (USS)</option><option>CT Chest / Abdomen</option><option>Echocardiogram</option><option>X-Ray Thoracolumbar Spine</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option selected="">General Radiography (X-Ray)</option><option>Ultrasound</option><option>CT Scan</option><option>Cardiac Echo</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">Routine Outpatient</option><option>Urgent</option><option>STAT</option></select></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="Rule out pulmonary TB / chronic cough; baseline pulmonary screening"></td><td class="px-3 py-2.5 text-right"><button class="text-slate-400 hover:text-rose-600 p-1 font-bold text-sm" onclick="this.closest('tr').remove()" type="button">✕</button></td></tr></tbody></table></div></div><div><label class="block font-medium text-slate-700 mb-1">Radiologist Specific Instructions &amp; Safety Screening</label><textarea class="w-full text-xs rounded border-slate-300" rows="2">Client has Stage 1 HTN (controlled). Penicillin hypersensitivity documented; no iodinated IV contrast planned. Return digital PACs link to CCC EMR.</textarea></div></div><div class="px-6 py-3.5 border-t border-slate-200 bg-slate-50 flex items-center justify-between shrink-0 text-xs"><button class="px-4 py-2 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 font-medium" onclick="toggleModal('modal-order-rad', false)">Cancel</button><div class="flex items-center space-x-2"><button class="px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 font-semibold shadow-2xs transition" onclick="alert('Radiology imaging order draft saved.'); toggleModal('modal-order-rad', false)">Save Draft</button><button class="px-5 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold shadow-xs flex items-center space-x-1.5" onclick="alert('All radiology requisitions successfully submitted to Main Facility Radiology.'); toggleModal('modal-order-rad', false)"><span class="material-symbols-outlined !text-base">check_circle</span><span class="">Authorize &amp; Submit All Imaging Orders</span></button></div></div></div>
+</div>
+<!-- ================= MODAL: ISSUE MEDICATION ================= -->
+<div class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden" id="modal-issue-med">
+<div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150"><div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0"><div class="flex items-center space-x-3"><div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold"><span class="material-symbols-outlined text-emerald-700">medication</span></div><div><h3 class="font-bold text-sm text-slate-900">Prescribe / Issue Medications (One or Multiple Drugs)</h3><p class="text-xs text-slate-500">Client: Joshua Mwangi • CCC No: <strong class="font-mono text-slate-800">CCC-1004</strong> (Penicillin Allergy documented)</p></div></div><button class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-200 transition" onclick="toggleModal('modal-issue-med', false)">✕</button></div><div class="p-6 space-y-4 overflow-y-auto custom-scrollbar flex-1 text-xs"><div class="bg-sky-50 border border-sky-200 rounded-lg p-3 text-[11px] text-sky-900 flex items-start space-x-2"><span class="material-symbols-outlined text-sky-700 !text-base shrink-0">verified_user</span><div class=""><strong>🔒 Privacy &amp; Pharmacy Protocol:</strong> Multi-drug orders are routed safely with CC No and clinical instructions. Penicillin class cross-reactivity warnings apply.</div></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50/70 p-3 rounded-lg border border-slate-200"><div><label class="block font-semibold text-slate-700 mb-1">Prescription Type</label><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">Routine ART &amp; Prophylaxis Refill</option><option>Regimen Transition / Substitution</option><option>Opportunistic Infection / Acute Treatment</option><option>Chronic Co-morbidities Rx</option></select></div><div><label class="block font-semibold text-slate-700 mb-1">Primary Pharmacy Destination</label><select class="w-full text-xs rounded border-slate-300 font-medium"><option selected="">CCC Pharmacy (In-house ART &amp; Prophylaxis)</option><option>Main Facility Pharmacy (OPD &amp; Chronic)</option><option>Split: ART to CCC, Non-ART to Main</option></select></div><div><label class="block font-semibold text-slate-700 mb-1">Default Dispense Duration</label><select class="w-full text-xs rounded border-slate-300 font-medium"><option>30 Days (1 Month)</option><option selected="">60 Days (2 Months Standard)</option><option>90 Days (Multi-Month Dispensing - MMD)</option></select></div></div><div class="space-y-3"><div class="flex items-center justify-between pb-1"><div class="flex items-center space-x-2"><h4 class="font-bold text-slate-900 uppercase tracking-wide text-xs flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-600 mr-2"></span>Prescription Basket (Items to Issue)</h4><span class="bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[11px]" id="rx-basket-count">3 items</span></div><button class="inline-flex items-center text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition" onclick="const c=document.getElementById('multi-drug-table-body'); const tr=document.createElement('tr'); tr.className='hover:bg-slate-50 transition border-b border-slate-100'; tr.innerHTML='&lt;td class=\'px-3 py-2.5\'&gt;&lt;input class=\'w-full text-xs rounded border-slate-300 font-medium\' placeholder=\'e.g. Fluconazole 200mg\' type=\'text\' /&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\'&gt;&lt;input class=\'w-full text-xs rounded border-slate-300\' placeholder=\'e.g. 1 tab OD\' type=\'text\' /&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\'&gt;&lt;select class=\'w-full text-xs rounded border-slate-300\'&gt;&lt;option&gt;30 days&lt;/option&gt;&lt;option selected&gt;60 days&lt;/option&gt;&lt;option&gt;90 days&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\'&gt;&lt;select class=\'w-full text-xs rounded border-slate-300\'&gt;&lt;option&gt;CCC Pharmacy&lt;/option&gt;&lt;option&gt;Main Pharmacy&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5\'&gt;&lt;input class=\'w-full text-xs rounded border-slate-300\' placeholder=\'Take with food\' type=\'text\' /&gt;&lt;/td&gt;&lt;td class=\'px-3 py-2.5 text-right\'&gt;&lt;button type=\'button\' class=\'text-slate-400 hover:text-rose-600 p-1 font-bold text-sm\' onclick=\'this.closest(\" tr\").remove()\'="">✕</button>'; c.appendChild(tr);" type="button"&gt;<span class="material-symbols-outlined !text-sm mr-1">add_circle</span>+ Add Another Medication</div><div class="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-2xs"><table class="w-full text-left text-xs"><thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 uppercase text-[11px]"><tr><th class="px-3 py-2.5 min-w-[200px]">Drug Name / Formulation</th><th class="px-3 py-2.5 min-w-[130px]">Dose &amp; Frequency</th><th class="px-3 py-2.5 min-w-[110px]">Duration</th><th class="px-3 py-2.5 min-w-[140px]">Pharmacy Route</th><th class="px-3 py-2.5 min-w-[180px]">Instructions / Notes</th><th class="px-3 py-2.5 text-right">Action</th></tr></thead><tbody class="divide-y divide-slate-100 text-slate-700" id="multi-drug-table-body"><tr class="hover:bg-slate-50 transition"><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300 font-semibold text-slate-900" type="text" value="AZT-3TC-LPVr (300/150mg + 200/50mg)"></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="1 tab BD (120 tabs)"></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option>30 days</option><option selected="">60 days</option><option>90 days</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option selected="">CCC Pharmacy</option><option>Main Pharmacy</option></select></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="Take BD with evening meals"></td><td class="px-3 py-2.5 text-right"><button class="text-slate-400 hover:text-rose-600 p-1 font-bold text-sm" onclick="this.closest('tr').remove()" type="button">✕</button></td></tr><tr class="hover:bg-slate-50 transition"><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300 font-semibold text-slate-900" type="text" value="Dapsone 100mg"></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="1 tab OD (60 tabs)"></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option>30 days</option><option selected="">60 days</option><option>90 days</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option selected="">CCC Pharmacy</option><option>Main Pharmacy</option></select></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="Sulpha allergy alternative prophylaxis"></td><td class="px-3 py-2.5 text-right"><button class="text-slate-400 hover:text-rose-600 p-1 font-bold text-sm" onclick="this.closest('tr').remove()" type="button">✕</button></td></tr><tr class="hover:bg-slate-50 transition"><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300 font-semibold text-slate-900" type="text" value="Amlodipine 5mg"></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="1 tab OD (60 tabs)"></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option>30 days</option><option selected="">60 days</option><option>90 days</option></select></td><td class="px-3 py-2.5"><select class="w-full text-xs rounded border-slate-300"><option>CCC Pharmacy</option><option selected="">Main Pharmacy</option></select></td><td class="px-3 py-2.5"><input class="w-full text-xs rounded border-slate-300" type="text" value="For Stage 1 Hypertension control"></td><td class="px-3 py-2.5 text-right"><button class="text-slate-400 hover:text-rose-600 p-1 font-bold text-sm" onclick="this.closest('tr').remove()" type="button">✕</button></td></tr></tbody></table></div></div><div><label class="block font-medium text-slate-700 mb-1">General Dispensing &amp; Adherence Notes</label><textarea class="w-full text-xs rounded border-slate-300" rows="2">Provide pill organizer review. Re-emphasize adherence alarm routine during long haul driving. Return immediately if adverse reaction occurs.</textarea></div></div><div class="px-6 py-3.5 border-t border-slate-200 bg-slate-50 flex items-center justify-between shrink-0 text-xs"><button class="px-4 py-2 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-100 font-medium" onclick="toggleModal('modal-issue-med', false)">Cancel</button><div class="flex items-center space-x-2"><button class="px-4 py-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 font-semibold shadow-2xs transition" onclick="alert('Prescription draft saved to client profile.'); toggleModal('modal-issue-med', false)">Save Draft</button><button class="px-5 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold shadow-xs flex items-center space-x-1.5" onclick="alert('Multi-item prescription orders successfully transmitted to designated pharmacies.'); toggleModal('modal-issue-med', false)"><span class="material-symbols-outlined !text-base">check_circle</span><span class="">Authorize &amp; Submit All Drugs</span></button></div></div></div>
+</div>
+<!-- ================= INTERACTIVITY SCRIPT ================= -->
+<script>
+    /**
+     * Switch Tabs Functionality
+     */
+    function switchTab(activeBtnId, activePanelId) {
+      // 1. Reset all buttons
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(btn => {
+        btn.classList.remove('border-emerald-700', 'text-emerald-800', 'font-bold');
+        btn.classList.add('border-transparent', 'text-slate-500');
+      });
+
+      // 2. Activate target button
+      const activeBtn = document.getElementById(activeBtnId);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-transparent', 'text-slate-500');
+        activeBtn.classList.add('border-emerald-700', 'text-emerald-800', 'font-bold');
+      }
+
+      // 3. Hide all tab panels
+      const panels = document.querySelectorAll('.tab-panel');
+      panels.forEach(panel => {
+        panel.classList.add('hidden');
+      });
+
+      // 4. Reveal targeted panel
+      const targetPanel = document.getElementById(activePanelId);
+      if (targetPanel) {
+        targetPanel.classList.remove('hidden');
+      }
+    }
+
+    /**
+     * Expand / Collapse Detailed Visit Note
+     */
+    function toggleVisitDetail() {
+      const card = document.getElementById('expanded-visit-card');
+      const btn = document.getElementById('btn-toggle-visit');
+      if (card.classList.contains('hidden')) {
+        card.classList.remove('hidden');
+        btn.innerHTML = '<span>Collapse Note ▲</span>';
+      } else {
+        card.classList.add('hidden');
+        btn.innerHTML = '<span>Expand Note ▼</span>';
+      }
+    }
+
+    function showFullVisitNote() {
+      const card = document.getElementById('expanded-visit-card');
+      const btn = document.getElementById('btn-toggle-visit');
+      if (card && btn) {
+        card.classList.remove('hidden');
+        btn.innerHTML = '<span>Collapse Note ▲</span>';
+        card.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    /**
+     * Modal Visibility Toggle
+     */
+    function toggleModal(modalId, show) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      if (show) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    /**
+     * Dynamic Add Condition in Visit Modal
+     */
+    function addConditionRow() {
+      const container = document.getElementById('dynamic-conditions-container');
+      const div = document.createElement('div');
+      div.className = "grid grid-cols-1 sm:grid-cols-12 gap-2 items-center bg-slate-50 p-2.5 rounded-lg border border-slate-200 text-xs";
+      div.innerHTML = `
+        <div class="sm:col-span-4">
+          <input class="w-full text-xs rounded border-slate-300 font-medium" type="text" placeholder="e.g. Type 2 Diabetes" value="">
+        </div>
+        <div class="sm:col-span-5">
+          <input class="w-full text-xs rounded border-slate-300" type="text" placeholder="Current Rx / Dosage" value="">
+        </div>
+        <div class="sm:col-span-2">
+          <select class="w-full text-xs rounded border-slate-300">
+            <option selected>Routine Monitoring</option>
+            <option>Active / Controlled</option>
+            <option>Poor Control</option>
+          </select>
+        </div>
+        <div class="sm:col-span-1 text-right">
+          <button type="button" class="text-slate-400 hover:text-rose-600 p-1" onclick="this.closest('.grid').remove()">✕</button>
+        </div>
+      `;
+      container.appendChild(div);
+    }
+
+    /**
+     * Save Encounter Action
+     */
+    function saveEncounter() {
+      alert('MoH 257 Clinical Encounter saved and verified by Dr. K. Njuguna! Client card updated.');
+      toggleModal('modal-record-visit', false);
+    }
+  </script>
+
+
+</body></html>
